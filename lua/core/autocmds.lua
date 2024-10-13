@@ -1,0 +1,1 @@
+-- Set up autocommands for automating repetitive tasks or triggering actions based on events.
