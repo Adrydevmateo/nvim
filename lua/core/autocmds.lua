@@ -22,3 +22,9 @@ end, {})
 vim.api.nvim_create_user_command('NeotreeActivation', function() 
 	require'neo-tree'.setup {}
 end, {})
+
+-- [ Define a command to load Mason ]
+vim.api.nvim_create_user_command('LoadMason', load_mason, {})
+vim.api.nvim_create_user_command('LoadLSPConfig', load_lspconfig, {})
+
+-- [ Define a command to load LSPConfig ]
