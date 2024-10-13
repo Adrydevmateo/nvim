@@ -27,9 +27,6 @@ map("n", "<C-j>", "<C-w>j")
 
 
 -- [[ Autocommands Related ]]
---
--- [ Map <Leader>ts to execute the Treesitter setup command | TreesitterSetup ]
-vim.api.nvim_set_keymap('n', '<Leader>ts', ':TreesitterSetup<CR>', { noremap = true, silent = true })
 
 -- [ Map <Leader>q to execute the QuiAll command ]
 vim.api.nvim_set_keymap('n', '<Leader>q', ':QuitAll<CR>', { noremap = true, silent = true })

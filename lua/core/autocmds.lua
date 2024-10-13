@@ -1,7 +1,7 @@
 -- Set up autocommands for automating repetitive tasks or triggering actions based on events.
 
--- [ Define the Treesitter setup command | TreesitterSetup ]
-vim.api.nvim_create_user_command('TreesitterSetup', function() 
+-- [ Define the Treesitter setup command | LoadTreesitter ]
+vim.api.nvim_create_user_command('LoadTreesitter', function() 
 	require'nvim-treesitter.configs'.setup {}
 end, {})
 
