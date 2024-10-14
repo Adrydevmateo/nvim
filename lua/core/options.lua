@@ -2,3 +2,7 @@
 
 -- [ color ]
 vim.cmd("colorscheme kanagawa")
+
+-- [ Numbers ]
+vim.cmd("set relativenumber")
+vim.cmd("set numberwidth=2")
