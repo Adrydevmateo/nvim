@@ -29,4 +29,5 @@ map("n", "<C-j>", "<C-w>j")
 -- [[ Autocommands Related ]]
 
 -- [ Map <Leader>q to execute the QuiAll command ]
-vim.api.nvim_set_keymap('n', '<Leader>q', ':QuitAll<CR>', { noremap = true, silent = true })
+map('n', '<Leader>q', ':QuitAll<CR>')
+

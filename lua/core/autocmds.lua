@@ -1,10 +1,5 @@
 -- Set up autocommands for automating repetitive tasks or triggering actions based on events.
 
--- [ Define the Treesitter setup command | LoadTreesitter ]
-vim.api.nvim_create_user_command('LoadTreesitter', function() 
-	require'nvim-treesitter.configs'.setup {}
-end, {})
-
 -- [ Define a command to close all buffers and exit Neovim ]
 vim.api.nvim_create_user_command('QuitAll', function()
   -- Close all buffers
