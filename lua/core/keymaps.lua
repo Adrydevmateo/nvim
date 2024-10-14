@@ -1,33 +1,31 @@
-local function map(mode, lhs, rhs, opts)
+local function set(mode, lhs, rhs, opts)
 	opts = opts or { noremap = true, silent = true }
-	vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
+	vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 -- Set leader key to space
 vim.g.mapleader = " "
 
--- Maps Ctrl + s to save the current file
-map('n', '<C-s>', ':w<CR>')
+-- Key mappings using set
+set('n', '<C-s>', ':w<CR>')           -- Save file
+set('n', '<C-p>', ':Neotree toggle<CR>') -- Toggle NeoTree
+set('n', '<Leader>o', ':vsplit<CR>')     -- Vertical split
+set('n', '<Leader>h', ':split<CR>')      -- Horizontal split
 
--- Map <C-p> to toggle neotree
-map('n', '<C-p>', ':Neotree toggle<CR>')
+-- Window navigation
+set('n', '<C-h>', '<C-w>h')
+set('n', '<C-l>', '<C-w>l')
+set('n', '<C-k>', '<C-w>k')
+set('n', '<C-j>', '<C-w>j')
 
--- Splits the window verticaly 
-map("n", "<Leader>o", ":vsplit<CR>")
+-- LSP-related mappings
+set('n', 'gd', vim.lsp.buf.definition)   -- Go to definition
+set('n', 'K', vim.lsp.buf.hover)         -- Show hover
+set('n', '<Leader>ca', vim.lsp.buf.code_action) -- Code action
+set('n', '<Leader>rn', vim.lsp.buf.rename) -- Rename symbol
+set('n', '[d', vim.diagnostic.goto_prev)  -- Go to previous diagnostic
+set('n', ']d', vim.diagnostic.goto_next)  -- Go to next diagnostic
 
--- Splits the window horizontaly
-map("n", "<Leader>h", ":split<CR>")
-
--- Window Navigation
-map("n", "<C-h>", "<C-w>h")
-map("n", "<C-l>", "<C-w>l")
-map("n", "<C-k>", "<C-w>k")
-map("n", "<C-j>", "<C-w>j")
-
-
-
--- [[ Autocommands Related ]]
-
--- [ Map <Leader>q to execute the QuiAll command ]
-map('n', '<Leader>q', ':QuitAll<CR>')
+-- Map <Leader>q to execute the QuitAll command
+set('n', '<Leader>q', ':QuitAll<CR>')
 
