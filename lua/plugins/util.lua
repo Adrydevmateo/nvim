@@ -22,30 +22,22 @@ return {
 	},
 	-- Add formatter.nvim
 	{
-		"mhartington/formatter.nvim",
+		"stevearc/conform.nvim",
 		config = function()
-			-- Set up formatter.nvim configuration here
-			require("formatter").setup({
-				-- Enable formatting for specific filetypes
-				filetype = {
-					lua = {
-						-- Use stylua for formatting Lua files
-						function()
-							return {
-								exe = "stylua",
-								args = { "--search-parent-directories", "-" },
-								stdin = true,
-							}
-						end,
-					},
-					-- Add other filetypes as needed
+			require("conform").setup({
+				formatters_by_ft = {
+					lua = { "stylua" },
+					javascript = { "biome", "prettierd", "prettier", stop_after_first = true },
+					typescript = { "biome", "prettierd", "prettier", stop_after_first = true },
+					typescriptreact = { "biome", "prettierd", "prettier", stop_after_first = true },
 				},
 			})
 
-			-- Auto-format on save for Lua files
 			vim.api.nvim_create_autocmd("BufWritePre", {
-				pattern = "*.lua",
-				command = "FormatWrite",
+				pattern = "*",
+				callback = function(args)
+					require("conform").format({ bufnr = args.buf })
+				end,
 			})
 		end,
 	},
