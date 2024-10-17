@@ -5,4 +5,4 @@ vim.cmd('colorscheme kanagawa')
 
 -- [ Numbers ]
 vim.cmd('set relativenumber')
-vim.cmd('set numberwidth=2')
+vim.cmd('set numberwidth=3')
