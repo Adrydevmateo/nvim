@@ -10,8 +10,13 @@ npm install -g typescript typescript-language-server
 npm i -g vscode-langservers-extracted
 ```
 
+## gopls
+```go
+go install golang.org/x/tools/gopls@latest
+```
+
 ## lua-language-server
 
-```js
+```lua
 scoop, homebrew, macports, yay etc. lua-language-server
 ``` 
