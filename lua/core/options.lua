@@ -1,8 +1,8 @@
 -- Set editor options (tab size, line numbers, etc.).
 
 -- [ color ]
-vim.cmd("colorscheme kanagawa")
+vim.cmd('colorscheme kanagawa')
 
 -- [ Numbers ]
-vim.cmd("set relativenumber")
-vim.cmd("set numberwidth=2")
+vim.cmd('set relativenumber')
+vim.cmd('set numberwidth=2')
