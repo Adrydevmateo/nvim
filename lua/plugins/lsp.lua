@@ -88,6 +88,50 @@ return {
 				end,
 			})
 
+			-- HTML Server
+			lsp.html.setup({
+				cmd = { "vscode-html-language-server", "--stdio" },
+				filetypes = { "html", "templ" },
+				init_options = {
+					configurationSection = { "html", "css", "javascript" },
+					embeddedLanguages = {
+						css = true,
+						javascript = true
+					},
+					provideFormatter = true
+				},
+				settings = {},
+				single_file_support = true,
+				capabilities = capabilities,
+				on_attach = function(client, bufnr)
+					lsp_format_on_save(client, bufnr)
+				end,
+			})
+
+			-- CSS Server
+			lsp.cssls.setup({
+				cmd = { "vscode-css-language-server", "--stdio" },
+				filetypes = { "css", "scss", "less" },
+				init_options = { provideFormatter = true },
+				root_dir = util.root_pattern("package.json", ".git") or bufdir,
+				settings = {
+					css = {
+						validate = true
+					},
+					less = {
+						validate = true
+					},
+					scss = {
+						validate = true
+					}
+				},
+				single_file_support = true,
+				capabilities = capabilities,
+				on_attach = function(client, bufnr)
+					lsp_format_on_save(client, bufnr)
+				end,
+			})
+
 
 			-- Lua | Server
 			lsp.lua_ls.setup({
