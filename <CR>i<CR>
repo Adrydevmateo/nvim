@@ -5,10 +5,10 @@ end
 
 -- Set leader key to space
 vim.g.mapleader = ' '
-
+sd
 -- Key mappings using set
 set('n', '<C-s>', ':w<CR>')              -- Save file
-set('i', '<C-s>', ':<Esc>:w<CR>i')       -- Save file
+set('i', '<C-s>', ':<Esc>w<CR>')         -- Save file
 set('n', '<C-p>', ':Neotree toggle<CR>') -- Toggle NeoTree
 set('n', '<Leader>o', ':vsplit<CR>')     -- Vertical split
 set('n', '<Leader>h', ':split<CR>')      -- Horizontal split
