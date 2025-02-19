@@ -3,7 +3,7 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	opts = {
 		automatic_setup = true,
-		ensure_installed = require("core.languages").fmtNLint,
+		ensure_installed = require("utils.languages").fmtNLint,
 		automatic_installation = true,
 	},
 	dependencies = {

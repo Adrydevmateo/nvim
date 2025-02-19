@@ -35,14 +35,14 @@ return {
       return capabilities
     end
 
-    local servers = require("core.languages").servers
+    local servers = require("utils.languages").servers
     for _, server in pairs(servers) do
       local opts = {
         on_attach = on_attach,
         capabilities = common_capabilities(),
       }
 
-      local require_ok, settings = pcall(require, "core.lspsettings." .. server)
+      local require_ok, settings = pcall(require, "utils.lspsettings." .. server)
       if require_ok then
         opts = vim.tbl_deep_extend("force", settings, opts)
       end

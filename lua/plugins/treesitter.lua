@@ -5,7 +5,7 @@ return {
 		build = ":TSUpdate",
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = require("core.languages").parsers,
+				ensure_installed = require("utils.languages").parsers,
 				highlight = { enable = true },
 				indent = { enable = true },
 			})

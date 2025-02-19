@@ -14,6 +14,6 @@ return {
     },
   },
   opts = {
-    ensure_installed = require("core.languages").servers
+    ensure_installed = require("utils.languages").servers
   },
 }
