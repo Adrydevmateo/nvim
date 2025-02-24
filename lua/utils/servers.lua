@@ -1,5 +1,6 @@
 return {
-  "cssls",
-  "html",
-  "tailwindcss",
+	"cssls",
+	"html",
+	"tailwindcss",
+	"pyright",
 }
