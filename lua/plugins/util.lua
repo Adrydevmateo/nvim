@@ -3,13 +3,36 @@ return {
 		"folke/persistence.nvim",
 		event = "BufReadPre",
 		opts = {},
-  -- stylua: ignore
-  keys = {
-    { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
-    { "<leader>qS", function() require("persistence").select() end,desc = "Select Session" },
-    { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
-    { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
-  },
+		keys = {
+			{
+				"<leader>qs",
+				function()
+					require("persistence").load()
+				end,
+				desc = "Restore Session",
+			},
+			{
+				"<leader>qS",
+				function()
+					require("persistence").select()
+				end,
+				desc = "Select Session",
+			},
+			{
+				"<leader>ql",
+				function()
+					require("persistence").load({ last = true })
+				end,
+				desc = "Restore Last Session",
+			},
+			{
+				"<leader>qd",
+				function()
+					require("persistence").stop()
+				end,
+				desc = "Don't Save Current Session",
+			},
+		},
 	},
 	-- telescope
 	{
@@ -72,95 +95,112 @@ return {
 		end,
 	},
 	-- null-ls
-	{
-		"jay-babu/mason-null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		opts = {
-			automatic_setup = true,
-			ensure_installed = require("utils.formatters_linters"),
-			automatic_installation = true,
-		},
-		dependencies = {
-			{
-				"nvimtools/none-ls.nvim",
-				dependencies = "nvim-lua/plenary.nvim",
-				keys = {
-					{
-						"<leader>lf",
-						"<cmd>lua vim.lsp.buf.format{ async = true }<cr>",
-						desc = "Format",
-					},
-				},
-				config = function()
-					local null_ls = require("null-ls")
-					local formatting = null_ls.builtins.formatting
-					-- local diagnostics = null_ls.builtins.diagnostics
-
-					null_ls.setup({
-						debug = false,
-						sources = {
-							formatting.prettier,
-							formatting.stylua,
-						},
-					})
-				end,
-			},
-		},
-	},
+	-- {
+	-- 	"jay-babu/mason-null-ls.nvim",
+	-- 	event = { "BufReadPre", "BufNewFile" },
+	-- 	opts = {
+	-- 		automatic_setup = true,
+	-- 		ensure_installed = require("utils.formatters_linters"),
+	-- 		automatic_installation = true,
+	-- 	},
+	-- 	dependencies = {
+	-- 		{
+	-- 			"nvimtools/none-ls.nvim",
+	-- 			dependencies = "nvim-lua/plenary.nvim",
+	-- 			keys = {
+	-- 				{
+	-- 					"<leader>lf",
+	-- 					"<cmd>lua vim.lsp.buf.format{ async = true }<cr>",
+	-- 					desc = "Format",
+	-- 				},
+	-- 			},
+	-- 			config = function()
+	-- 				local null_ls = require("null-ls")
+	-- 				local formatting = null_ls.builtins.formatting
+	--
+	-- 				null_ls.setup({
+	-- 					debug = false,
+	-- 					sources = {
+	-- 						formatting.prettier,
+	-- 						formatting.stylua,
+	-- 					},
+	-- 				})
+	-- 			end,
+	-- 		},
+	-- 	},
+	-- },
+	-- luasnip
+	-- {
+	-- 	"L3MON4D3/LuaSnip",
+	-- 	event = "InsertEnter",
+	-- 	lazy = true,
+	-- 	config = function()
+	-- 		require("luasnip.loaders.from_vscode").lazy_load({
+	-- 			paths = { "./snippets" },
+	-- 		})
+	-- 		local ls = require("luasnip")
+	--
+	-- 		vim.keymap.set({ "i", "s" }, "<C-j>", function()
+	-- 			ls.jump(1)
+	-- 		end, { silent = true })
+	-- 		vim.keymap.set({ "i", "s" }, "<C-k>", function()
+	-- 			ls.jump(-1)
+	-- 		end, { silent = true })
+	-- 	end,
+	-- },
 	-- completion | nvim-cmp
-	{
-		"hrsh7th/nvim-cmp",
-		dependencies = {
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "hrsh7th/cmp-buffer" },
-			{ "L3MON4D3/LuaSnip" },
-			{ "saadparwaiz1/cmp_luasnip" },
-		},
-		event = "InsertEnter",
-		config = function()
-			local cmp = require("cmp")
-			local luasnip = require("luasnip")
-
-			cmp.setup({
-				snippet = {
-					expand = function(args)
-						luasnip.lsp_expand(args.body)
-					end,
-				},
-				mapping = cmp.mapping.preset.insert({
-					["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-					["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-					["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-					["<C-e>"] = cmp.mapping({
-						i = cmp.mapping.abort(),
-						c = cmp.mapping.close(),
-					}),
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
-				}),
-				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					{ name = "luasnip" },
-					{ name = "buffer" },
-				}),
-				window = {
-					completion = {
-						border = "rounded",
-					},
-					documentation = {
-						border = "rounded",
-					},
-				},
-				experimental = {
-					ghost_text = false,
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"hrsh7th/nvim-cmp",
+	-- 	dependencies = {
+	-- 		{ "hrsh7th/cmp-nvim-lsp" },
+	-- 		{ "hrsh7th/cmp-buffer" },
+	-- 		{ "saadparwaiz1/cmp_luasnip" },
+	-- 	},
+	-- 	event = "InsertEnter",
+	-- 	config = function()
+	-- 		local cmp = require("cmp")
+	-- 		local luasnip = require("luasnip")
+	--
+	-- 		cmp.setup({
+	-- 			snippet = {
+	-- 				expand = function(args)
+	-- 					luasnip.lsp_expand(args.body)
+	-- 				end,
+	-- 			},
+	-- 			mapping = cmp.mapping.preset.insert({
+	-- 				["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+	-- 				["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+	-- 				["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+	-- 				["<C-e>"] = cmp.mapping({
+	-- 					i = cmp.mapping.abort(),
+	-- 					c = cmp.mapping.close(),
+	-- 				}),
+	-- 				["<CR>"] = cmp.mapping.confirm({ select = true }),
+	-- 			}),
+	-- 			sources = cmp.config.sources({
+	-- 				{ name = "nvim_lsp" },
+	-- 				{ name = "luasnip" },
+	-- 				{ name = "buffer" },
+	-- 			}),
+	-- 			window = {
+	-- 				completion = {
+	-- 					border = "rounded",
+	-- 				},
+	-- 				documentation = {
+	-- 					border = "rounded",
+	-- 				},
+	-- 			},
+	-- 			experimental = {
+	-- 				ghost_text = false,
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	-- typescript
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		ft = { "typescript", "typescriptreact", "typescript.tsx" },
+		ft = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
 		config = function()
 			require("typescript-tools").setup({
 				on_attach = function(client)

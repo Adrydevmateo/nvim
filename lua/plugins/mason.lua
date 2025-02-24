@@ -20,6 +20,7 @@ return {
 			require("mason-lspconfig").setup({
 				---@type string[]
 				ensure_installed = require("utils.servers"),
+				automatic_installation = true,
 			})
 		end,
 	},
