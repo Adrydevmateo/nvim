@@ -1,9 +1,7 @@
--- Shorten function name
-local keymap = vim.keymap.set
--- Silent keymap option
-local opts = { silent = true, noremap = true }
+local keymap = vim.keymap.set -- Shorten function name
+local opts = { silent = true, noremap = true } -- Silent keymap option
 
---Map leader keys
+-- Map leader keys
 vim.g.mapleader = " "
 
 -- Better save
@@ -38,7 +36,7 @@ keymap("n", "<C-L>", "<C-W><C-L>", opts)
 
 -- Better paste
 keymap("v", "p", '"_dP', opts)
-keymap("v", "c", '"_c', opts)
+-- keymap("v", "c", '"_c', opts)
 keymap("n", "x", '"_x', opts)
 keymap("n", "X", '"_X', opts)
 
