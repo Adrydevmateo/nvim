@@ -20,6 +20,8 @@ M.treesitter_languages = {
   "dockerfile",
   "gitignore",
   "gitcommit",
+  "vue",
+  "svelte",
 }
 
 M.mason_servers = {
@@ -77,6 +79,13 @@ M.filetype_settings = {
   javascript = {
     format_on_save = true,
     organize_imports = true,
+  },
+  -- React/Vite specific (JSX/TSX are handled by javascript/typescript parsers)
+  vue = {
+    format_on_save = true,
+  },
+  svelte = {
+    format_on_save = true,
   },
   -- Lua specific
   lua = {

@@ -1,5 +1,5 @@
 -- Test script for nvim-tree configuration
--- Run this in Neovim with: :lua dofile("test_nvimtree.lua")
+-- Run this in Neovim with: :lua dofile("tests/test_nvimtree.lua")
 
 local function test_nvim_tree()
   print("🧪 Testing nvim-tree configuration...")

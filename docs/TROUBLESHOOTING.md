@@ -4,12 +4,15 @@
 
 ### 1. Treesitter Parser Installation Errors
 
-**Error**: `Parser not available for language "gitrebase"`
+**Error**: `Parser not available for language "gitrebase"` or `Parser not available for language "jsx"`
 
 **Solution**: 
 - The "gitrebase" parser has been removed from the configuration
+- "jsx" and "tsx" are not separate parsers - they're handled by "javascript" and "typescript" parsers
 - If you encounter similar errors with other parsers, check the [Treesitter parsers list](https://github.com/nvim-treesitter/nvim-treesitter#supported-languages)
 - Remove unsupported parsers from `lua/core/utils.lua`
+
+**Note**: JSX files (`.jsx`) are handled by the "javascript" parser, and TSX files (`.tsx`) are handled by the "typescript" parser automatically.
 
 ### 2. Plugin Version Conflicts
 
@@ -81,9 +84,32 @@
    - Run `:Lazy sync` to install the plugin
    - Restart Neovim after installation
 
-4. **Test Telescope**: Run `:lua dofile("test_telescope.lua")` to verify everything works
+4. **Test Telescope**: Run `:lua dofile("tests/test_telescope.lua")` to verify everything works
 
-### 5. Performance Issues
+### 5. React/Vite Project Issues
+
+**Error**: Telescope not working in React/Vite projects
+
+**Solutions**:
+1. **Test React/Vite setup**: Run `:lua dofile("tests/test_react_telescope.lua")`
+2. **Check project structure**: Ensure you're in the project root with `package.json`
+3. **Install dependencies**: `sudo pacman -S ripgrep fd`
+4. **Check file patterns**: React/Vite projects have specific ignore patterns
+5. **Try manual commands**: `:Telescope find_files` or `:Telescope live_grep`
+
+**Common React/Vite issues**:
+- Files in `node_modules` being ignored (this is correct)
+- `.vite` cache directory being ignored (this is correct)
+- JSX/TSX files not being found (check file extensions)
+- Build directories being ignored (this is correct)
+
+**Telescope Command Issues**:
+- Error: `E492: Not an editor command: Telescope live_grep`
+- Solution: Telescope is now loaded immediately and commands are registered
+- Try: `:Telescope find_files` or `:Telescope live_grep`
+- Or use keymaps: `<space>ff` or `<space>fg`
+
+### 6. Performance Issues
 
 **Symptoms**: Slow startup, laggy performance
 
@@ -93,7 +119,7 @@
 3. Check memory usage: `:Lazy stats`
 4. Update plugins: `:Lazy sync`
 
-### 6. Missing Icons
+### 7. Missing Icons
 
 **Symptoms**: No icons in file tree, status line, etc.
 
@@ -113,7 +139,7 @@
    vim.opt.guifont = "Hack Nerd Font:h12"
    ```
 
-### 7. Git Integration Issues
+### 8. Git Integration Issues
 
 **Symptoms**: No git signs, git commands not working
 
@@ -123,7 +149,7 @@
 3. Check gitsigns status: `:Gitsigns status`
 4. Restart gitsigns: `:Gitsigns refresh`
 
-### 8. Keymap Issues
+### 9. Keymap Issues
 
 **Symptoms**: Keymaps not working
 
@@ -132,7 +158,7 @@
 2. Check for conflicts: `:verbose map <key>`
 3. Reload configuration: `:source $MYVIMRC`
 
-### 9. Plugin Loading Issues
+### 10. Plugin Loading Issues
 
 **Symptoms**: Plugins not loading, errors in startup
 
@@ -141,7 +167,7 @@
 2. Clean and reinstall: `:Lazy clean` then restart
 3. Check plugin health: `:checkhealth`
 
-### 10. NvimTree Configuration Errors
+### 11. NvimTree Configuration Errors
 
 **Error**: `Unknown option: git.show_on_files`
 
@@ -150,13 +176,13 @@
 - If you see similar errors, check the [nvim-tree documentation](https://github.com/nvim-tree/nvim-tree.lua#setup) for current options
 - Run `:Lazy sync` to update the plugin
 
-### 11. Which-Key Issues
+### 12. Which-Key Issues
 
 **Error**: `There were issues reported with your which-key mappings`
 
 **Solutions**:
 1. **Check health**: Run `:checkhealth which-key`
-2. **Test configuration**: Run `:lua dofile("test_issues.lua")`
+2. **Test configuration**: Run `:lua dofile("tests/test_issues.lua")`
 3. **Verify keymaps**: Press `<leader>` to see available keymaps
 4. **Check conflicts**: Look for duplicate keymap definitions
 5. **Restart Neovim**: Sometimes which-key needs a restart to detect changes
@@ -168,16 +194,16 @@
 - Plugin loading order issues
 - **Keymap conflicts**: Fixed `<leader>tn` and `<leader>tl` conflicts
 
-### 12. Fidget.nvim Issues
+### 13. Fidget.nvim Issues
 
 **Error**: `Encountered 1 unknown options during setup(). fidget.nvim`
 
 **Solution**:
 - The configuration has been updated to use the correct fidget.nvim options
 - Changed `window.blend` to `notification.window.winblend`
-- Run `:lua dofile("test_issues.lua")` to verify the fix
+- Run `:lua dofile("tests/test_issues.lua")` to verify the fix
 
-### 13. Colorscheme Issues
+### 14. Colorscheme Issues
 
 **Symptoms**: Colors not displaying correctly
 

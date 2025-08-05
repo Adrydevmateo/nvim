@@ -1,5 +1,5 @@
 -- Cleanup script for Neovim configuration
--- Run this in Neovim with: :lua dofile("cleanup.lua")
+-- Run this in Neovim with: :lua dofile("tests/cleanup.lua")
 
 local function cleanup_plugins()
   print("🧹 Starting plugin cleanup...")

@@ -1,5 +1,5 @@
 -- Comprehensive test script for which-key and fidget issues
--- Run this in Neovim with: :lua dofile("test_issues.lua")
+-- Run this in Neovim with: :lua dofile("tests/test_issues.lua")
 
 local function test_which_key()
   print("🔍 Testing which-key configuration...")

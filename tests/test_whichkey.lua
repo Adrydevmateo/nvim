@@ -1,5 +1,5 @@
 -- Test script for which-key configuration
--- Run this in Neovim with: :lua dofile("test_whichkey.lua")
+-- Run this in Neovim with: :lua dofile("tests/test_whichkey.lua")
 
 local function test_which_key()
   print("🧪 Testing which-key configuration...")

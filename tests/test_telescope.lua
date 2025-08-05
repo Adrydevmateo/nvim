@@ -1,5 +1,5 @@
 -- Test script for Telescope configuration
--- Run this in Neovim with: :lua dofile("test_telescope.lua")
+-- Run this in Neovim with: :lua dofile("tests/test_telescope.lua")
 
 local function test_telescope()
   print("🔍 Testing Telescope configuration...")

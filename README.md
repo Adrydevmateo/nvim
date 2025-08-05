@@ -49,6 +49,14 @@ A high-performance, modern Neovim configuration optimized for speed, efficiency,
 nvim/
 ├── init.lua                 # Main entry point
 ├── lazy-lock.json          # Plugin version lock file
+├── docs/                    # Documentation
+│   └── TROUBLESHOOTING.md  # Troubleshooting guide
+├── tests/                   # Test scripts
+│   ├── README.md           # Test documentation
+│   ├── test_issues.lua     # Core functionality tests
+│   ├── test_telescope.lua  # Telescope tests
+│   ├── test_treesitter.lua # Treesitter tests
+│   └── cleanup.lua         # Configuration cleanup
 └── lua/
     ├── core/               # Core configuration
     │   ├── globals.lua     # Global variables
@@ -174,7 +182,9 @@ nvim/
 1. **First launch**: Plugins will auto-install
 2. **Check health**: Run `:checkhealth` to verify setup
 3. **Explore keymaps**: Press `<leader>h` for help
-4. **Customize**: Edit `lua/core/keymaps.lua` for personal preferences
+4. **Run tests**: Use test scripts in `tests/` directory to verify functionality
+5. **Read docs**: Check `docs/` directory for detailed documentation
+6. **Customize**: Edit `lua/core/keymaps.lua` for personal preferences
 
 ## 📊 Performance Metrics
 
@@ -189,7 +199,22 @@ nvim/
 - **Manual update**: Run `:Lazy sync` to update plugins
 - **Configuration**: Edit files and restart Neovim
 
+## 🧪 Testing
+
+The configuration includes comprehensive test scripts in the `tests/` directory:
+
+- **Core tests**: `tests/test_issues.lua` - Test which-key and fidget configuration
+- **Plugin tests**: Test individual plugins (Telescope, Treesitter, etc.)
+- **Project tests**: `tests/test_react_telescope.lua` - Test React/Vite project support
+- **Cleanup**: `tests/cleanup.lua` - Fix configuration issues
+
+Run tests with: `:lua dofile("tests/test_name.lua")`
+
+See `tests/README.md` for detailed test documentation.
+
 ## 🐛 Troubleshooting
+
+For detailed troubleshooting information, see [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
 
 ### Common Issues
 1. **Slow startup**: Check for conflicting plugins

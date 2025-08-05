@@ -130,6 +130,7 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    lazy = false, -- Load immediately so commands are available
     keys = {
       { "<space>ff", mode = "n", desc = "Telescope find files" },
       { "<space>fg", mode = "n", desc = "Telescope live grep" },
@@ -156,6 +157,30 @@ return {
       km("n", "<space>fo", builtin.oldfiles, { desc = "Telescope old files" })
       km("n", "<space>fc", builtin.git_commits, { desc = "Telescope git commits" })
       km("n", "<space>fs", builtin.git_status, { desc = "Telescope git status" })
+
+      -- Register Telescope commands
+      vim.api.nvim_create_user_command("Telescope", function(args)
+        local cmd = args.args
+        if cmd == "find_files" then
+          builtin.find_files()
+        elseif cmd == "live_grep" then
+          builtin.live_grep()
+        elseif cmd == "buffers" then
+          builtin.buffers()
+        elseif cmd == "help_tags" then
+          builtin.help_tags()
+        elseif cmd == "oldfiles" then
+          builtin.oldfiles()
+        elseif cmd == "git_commits" then
+          builtin.git_commits()
+        elseif cmd == "git_status" then
+          builtin.git_status()
+        else
+          print("Available Telescope commands: find_files, live_grep, buffers, help_tags, oldfiles, git_commits, git_status")
+        end
+      end, { nargs = 1, complete = function()
+        return { "find_files", "live_grep", "buffers", "help_tags", "oldfiles", "git_commits", "git_status" }
+      end })
 
       -- Telescope configuration
       telescope.setup({
@@ -199,6 +224,14 @@ return {
             "target",
             "*.lock",
             "*.log",
+            ".vite",
+            ".next",
+            ".nuxt",
+            ".output",
+            "coverage",
+            ".nyc_output",
+            ".cache",
+            ".parcel-cache",
           },
           path_display = { "truncate" },
           winblend = 0,
@@ -209,15 +242,43 @@ return {
         },
         pickers = {
           find_files = {
-            find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
+            find_command = { "fd", "--type", "f", "--strip-cwd-prefix", "--hidden", "--exclude", "node_modules" },
             hidden = true,
             no_ignore = false,
             follow = true,
+            file_ignore_patterns = {
+              "node_modules",
+              ".git",
+              "dist",
+              "build",
+              ".vite",
+              ".next",
+              ".nuxt",
+              ".output",
+              "coverage",
+              ".nyc_output",
+              ".cache",
+              ".parcel-cache",
+            },
           },
           live_grep = {
             additional_args = function()
-              return { "--hidden" }
+              return { "--hidden", "--glob=!node_modules/*", "--glob=!.git/*" }
             end,
+            file_ignore_patterns = {
+              "node_modules",
+              ".git",
+              "dist",
+              "build",
+              ".vite",
+              ".next",
+              ".nuxt",
+              ".output",
+              "coverage",
+              ".nyc_output",
+              ".cache",
+              ".parcel-cache",
+            },
           },
           buffers = {
             sort_lastused = true,
