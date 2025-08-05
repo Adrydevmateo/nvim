@@ -1,90 +1,118 @@
-local utils = require("core.utils")
-
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    branch = 'master',
-    lazy = false,
-    build = ":TSUpdate",
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = utils.treesitter_languages,
-        sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
-        auto_install = true, -- Automatically install missing parsers when entering buffer
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false, -- Disable for performance
+      require("lualine").setup({
+        options = {
+          theme = "kanagawa",
+          component_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
         },
-        indent = {
-          enable = true,
-          disable = { "python", "yaml" }, -- Disable for languages with complex indentation
+        sections = {
+          lualine_a = { "mode" },
+          lualine_b = { "branch", "diff", "diagnostics" },
+          lualine_c = { "filename" },
+          lualine_x = { "encoding", "fileformat", "filetype" },
+          lualine_y = { "progress" },
+          lualine_z = { "location" },
         },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<CR>",
-            node_incremental = "<CR>",
-            node_decremental = "<BS>",
-            scope_incremental = "<TAB>",
-          },
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = { "filename" },
+          lualine_x = { "location" },
+          lualine_y = {},
+          lualine_z = {},
         },
-        textobjects = {
-          enable = true,
-          lookahead = true,
-          keymaps = {
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
-            ["aa"] = "@parameter.outer",
-            ["ia"] = "@parameter.inner",
-            ["al"] = "@loop.outer",
-            ["il"] = "@loop.inner",
-            ["ai"] = "@conditional.outer",
-            ["ii"] = "@conditional.inner",
-            ["a/"] = "@comment.outer",
-            ["i/"] = "@comment.inner",
-            ["ab"] = "@block.outer",
-            ["ib"] = "@block.inner",
-          },
+        tabline = {},
+        extensions = {},
+      })
+    end,
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("indent_blankline").setup({
+        char = "│",
+        tab_char = "│",
+        show_trailing_blankline_indent = false,
+        show_current_context = true,
+        show_current_context_start = true,
+      })
+    end,
+  },
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup({
+        toggler = {
+          line = "<leader>cc",
+          block = "<leader>cb",
         },
-        move = {
-          enable = true,
-          set_jumps = true,
-          goto_next_start = {
-            ["]m"] = "@function.outer",
-            ["]]"] = "@class.outer",
-          },
-          goto_next_end = {
-            ["]M"] = "@function.outer",
-            ["]["] = "@class.outer",
-          },
-          goto_previous_start = {
-            ["[m"] = "@function.outer",
-            ["[["] = "@class.outer",
-          },
-          goto_previous_end = {
-            ["[M"] = "@function.outer",
-            ["[]"] = "@class.outer",
-          },
+        opleader = {
+          line = "<leader>c",
+          block = "<leader>b",
         },
-        swap = {
-          enable = true,
-          swap_next = {
-            ["<leader>a"] = "@parameter.inner",
-          },
-          swap_previous = {
-            ["<leader>A"] = "@parameter.inner",
-          },
+        extra = {
+          above = "<leader>cO",
+          below = "<leader>co",
+          eol = "<leader>cA",
         },
-        autotag = {
-          enable = true,
-        },
-        context_commentstring = {
-          enable = true,
-          enable_autocmd = false,
+        mappings = {
+          basic = true,
+          extra = true,
         },
       })
     end,
   },
-}
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    config = function()
+      require("nvim-surround").setup({})
+    end,
+  },
+  {
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup({})
+    end,
+  },
+  {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup({
+        plugins = {
+          marks = true,
+          registers = true,
+          spelling = {
+            enabled = true,
+            suggestions = 20,
+          },
+        },
+        icons = {
+          breadcrumb = "»",
+          separator = "➜",
+          group = "+",
+        },
+        popup_mappings = {
+          scroll_down = "<c-d>",
+          scroll_up = "<c-u>",
+        },
+        window = {
+          border = "rounded",
+          position = "bottom",
+          margin = { 1, 0, 1, 0 },
+          padding = { 2, 2, 2, 2 },
+        },
+        layout = {
+          height = { min = 4, max = 25 },
+          width = { min = 20, max = 50 },
+          spacing = 3,
+          align = "left",
+        },
+      })
+    end,
+  },
+} 

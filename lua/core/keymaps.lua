@@ -1,119 +1,48 @@
-local km = vim.keymap.set
-local opt = { silent = true, noremap = true }
+local map = vim.keymap.set
+local opts = { noremap = true, silent = true }
 
--- Set leader key to space
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
--- Window navigation
-km("n", "<C-h>", "<C-w>h", opt)
-km("n", "<C-j>", "<C-w>j", opt)
-km("n", "<C-k>", "<C-w>k", opt)
-km("n", "<C-l>", "<C-w>l", opt)
+-- General
+map("n", "<leader>w", "<cmd>w<cr>", opts)
+map("n", "<leader>q", "<cmd>q<cr>", opts)
+map("n", "<leader>Q", "<cmd>qa!<cr>", opts)
+map("n", "<leader>h", "<cmd>nohlsearch<cr>", opts)
 
 -- Window management
-km("n", "<leader>wv", "<C-w>v", opt) -- Split vertically
-km("n", "<leader>ws", "<C-w>s", opt) -- Split horizontally
-km("n", "<leader>wc", "<C-w>c", opt) -- Close window
-km("n", "<leader>wo", "<C-w>o", opt) -- Close other windows
+map("n", "<C-h>", "<C-w>h", opts)
+map("n", "<C-j>", "<C-w>j", opts)
+map("n", "<C-k>", "<C-w>k", opts)
+map("n", "<C-l>", "<C-w>l", opts)
+map("n", "<leader>sv", "<cmd>vsplit<cr>", opts)
+map("n", "<leader>sh", "<cmd>split<cr>", opts)
 
--- Buffer navigation
-km("n", "<leader>bn", ":bnext<CR>", opt)
-km("n", "<leader>bp", ":bprevious<CR>", opt)
-km("n", "<leader>bd", ":bdelete<CR>", opt)
-km("n", "<leader>ba", ":bufdo bdelete<CR>", opt)
+-- Buffer management
+map("n", "<leader>bn", "<cmd>bnext<cr>", opts)
+map("n", "<leader>bp", "<cmd>bprevious<cr>", opts)
+map("n", "<leader>bd", "<cmd>bdelete<cr>", opts)
 
--- Tab navigation
-km("n", "<leader>tn", ":tabnew<CR>", opt)
-km("n", "<leader>tc", ":tabclose<CR>", opt)
-km("n", "<leader>to", ":tabonly<CR>", opt)
-km("n", "<leader>th", ":tabprevious<CR>", opt)
-km("n", "<leader>tl", ":tabnext<CR>", opt)
+-- Move lines
+map("n", "<A-j>", "<cmd>m .+1<cr>==", opts)
+map("n", "<A-k>", "<cmd>m .-2<cr>==", opts)
+map("v", "<A-j>", ":m '>+1<cr>gv=gv", opts)
+map("v", "<A-k>", ":m '<-2<cr>gv=gv", opts)
 
--- Quick save and quit
-km("n", "<leader>w", ":w<CR>", opt)
-km("n", "<leader>q", ":q<CR>", opt)
-km("n", "<leader>Q", ":qa!<CR>", opt)
+-- Telescope
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
+map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
+map("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
+map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
 
--- Search improvements
-km("n", "n", "nzzzv", opt) -- Keep search results centered
-km("n", "N", "Nzzzv", opt)
-km("n", "*", "*zzzv", opt)
-km("n", "#", "#zzzv", opt)
-km("n", "g*", "g*zzzv", opt)
-km("n", "g#", "g#zzzv", opt)
+-- LSP
+map("n", "gd", vim.lsp.buf.definition, opts)
+map("n", "gr", vim.lsp.buf.references, opts)
+map("n", "K", vim.lsp.buf.hover, opts)
+map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+map("n", "<leader>rn", vim.lsp.buf.rename, opts)
 
--- Clear search highlights
-km("n", "<leader><CR>", ":nohlsearch<CR>", opt)
+-- Toggleterm
+map("n", "<leader>tt", "<cmd>ToggleTerm<cr>", opts)
+map("t", "<Esc>", "<C-\\><C-n>", opts)
 
--- Better indentation
-km("v", "<", "<gv", opt)
-km("v", ">", ">gv", opt)
-
--- Move lines up and down
-km("n", "<A-j>", ":m .+1<CR>==", opt)
-km("n", "<A-k>", ":m .-2<CR>==", opt)
-km("v", "<A-j>", ":m '>+1<CR>gv=gv", opt)
-km("v", "<A-k>", ":m '<-2<CR>gv=gv", opt)
-
--- Center cursor after jumps
-km("n", "G", "Gzz", opt)
-km("n", "gg", "ggzz", opt)
-km("n", "<C-o>", "<C-o>zz", opt)
-km("n", "<C-i>", "<C-i>zz", opt)
-
--- Quick escape from terminal
-km("t", "<Esc>", "<C-\\><C-n>", opt)
-
--- Reselect visual selection after indenting
-km("v", "<", "<gv", opt)
-km("v", ">", ">gv", opt)
-
--- Keep cursor in place when joining lines
-km("n", "J", "mzJ`z", opt)
-
--- Quick edit config files
-km("n", "<leader>ev", ":e $MYVIMRC<CR>", opt)
-km("n", "<leader>sv", ":source $MYVIMRC<CR>", opt)
-
--- Toggle options
-km("n", "<leader>tw", ":set wrap!<CR>", opt)
-km("n", "<leader>tN", ":set number!<CR>", opt)
-km("n", "<leader>tr", ":set relativenumber!<CR>", opt)
-km("n", "<leader>tL", ":set list!<CR>", opt)
-
--- Quick file operations
-km("n", "<leader>cd", ":cd %:p:h<CR>", opt) -- Change to current file directory
-km("n", "<leader>pwd", ":pwd<CR>", opt) -- Show current directory
-
--- Yank to system clipboard
-km("n", "<leader>y", '"+y', opt)
-km("v", "<leader>y", '"+y', opt)
-km("n", "<leader>Y", '"+yg_', opt)
-
--- Paste from system clipboard
-km("n", "<leader>p", '"+p', opt)
-km("v", "<leader>p", '"+p', opt)
-km("n", "<leader>P", '"+P', opt)
-km("v", "<leader>P", '"+P', opt)
-
--- Delete without yanking
-km("n", "<leader>d", '"_d', opt)
-km("v", "<leader>d", '"_d', opt)
-
--- Change without yanking
-km("n", "<leader>c", '"_c', opt)
-km("v", "<leader>c", '"_c', opt)
-
--- Quick macro execution
-km("n", "Q", "@q", opt)
-
--- Disable arrow keys in normal mode (encourage hjkl usage)
-km("n", "<Up>", "<Nop>", opt)
-km("n", "<Down>", "<Nop>", opt)
-km("n", "<Left>", "<Nop>", opt)
-km("n", "<Right>", "<Nop>", opt)
-
--- Quick access to common commands
-km("n", "<leader>h", ":help ", opt)
-km("n", "<leader>H", ":help", opt)
+-- NvimTree
+map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", opts)
+map("n", "<leader>o", "<cmd>NvimTreeFocus<cr>", opts) 

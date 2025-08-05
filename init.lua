@@ -1,14 +1,20 @@
--- Initialize Neovim configuration with error handling
-local startup = require("core.startup")
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
--- Initialize core modules
-startup.init()
-
--- Run health check after initialization
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    startup.check_health()
-  end,
-  once = true,
-})
-
+-- Load core configuration
+require("core.options")
+require("core.keymaps")
+require("core.lazy")
+require("core.utils")
+require("core.startup")

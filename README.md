@@ -1,279 +1,145 @@
-# Optimized Neovim Configuration
+# Neovim Configuration
 
-A high-performance, modern Neovim configuration optimized for speed, efficiency, and developer productivity.
+A modern Neovim configuration with LSP support, Rust development tools, and a beautiful UI.
 
-## 🚀 Performance Optimizations
+## Features
 
-### Core Performance Improvements
+- **LSP Support**: Full Language Server Protocol support with Mason for easy installation
+- **Rust Support**: Rust-specific tools including rust-analyzer and rust-tools
+- **Telescope**: Fuzzy finder for files, grep, and more
+- **Treesitter**: Advanced syntax highlighting and code parsing
+- **Toggleterm**: Integrated terminal
+- **NvimTree**: File explorer
+- **Kanagawa**: Beautiful colorscheme
+- **Lazy**: Fast plugin manager
+- **Lua**: Written entirely in Lua
 
-- **Reduced startup time**: Optimized plugin loading with lazy loading
-- **Memory efficiency**: Disabled unnecessary built-in plugins
-- **Faster completion**: Reduced `updatetime` to 300ms (from 4000ms)
-- **Optimized redraw**: Enabled `lazyredraw` for macro execution
-- **Better file handling**: Disabled backup/swap files, enabled persistent undo
+## Keybindings
 
-### Plugin Performance Enhancements
-
-- **Lazy loading**: All plugins load only when needed
-- **Conditional loading**: Language-specific plugins load only for relevant file types
-- **Performance-focused settings**: Optimized configurations for large files
-- **Reduced plugin overhead**: Minimal, essential plugins only
-
-## 🎯 Key Features
-
-### Enhanced Workflow
-- **Space as leader key**: Intuitive key mapping
-- **Comprehensive keymaps**: Window, buffer, and tab management
-- **Smart search**: Case-insensitive with smart case detection
-- **Auto-formatting**: Language-specific formatting on save
-- **Git integration**: Gitsigns for real-time git status
-
-### Language Support
-- **Go**: Full LSP support with auto-formatting
-- **Rust**: Comprehensive Rust tooling with rustaceanvim
-- **TypeScript/JavaScript**: Advanced LSP with inlay hints
-- **Lua**: Optimized Lua development environment
-- **Multiple languages**: Support for 20+ programming languages
-
-### Development Tools
-- **LSP**: Language Server Protocol for all supported languages
-- **Completion**: Smart completion with nvim-cmp
-- **File explorer**: Nvim-tree with git integration
-- **Fuzzy finder**: Telescope with advanced search capabilities
-- **Terminal**: Integrated terminal with toggleterm
-- **AI assistance**: Supermaven integration for code completion
-
-## 📁 Project Structure
-
-```
-nvim/
-├── init.lua                 # Main entry point
-├── lazy-lock.json          # Plugin version lock file
-├── docs/                    # Documentation
-│   └── TROUBLESHOOTING.md  # Troubleshooting guide
-├── tests/                   # Test scripts
-│   ├── README.md           # Test documentation
-│   ├── test_issues.lua     # Core functionality tests
-│   ├── test_telescope.lua  # Telescope tests
-│   ├── test_treesitter.lua # Treesitter tests
-│   └── cleanup.lua         # Configuration cleanup
-└── lua/
-    ├── core/               # Core configuration
-    │   ├── globals.lua     # Global variables
-    │   ├── keymaps.lua     # Key mappings
-    │   ├── lazy.lua        # Plugin manager setup
-    │   ├── options.lua     # Neovim options
-    │   └── utils.lua       # Utility functions
-    └── plugins/            # Plugin configurations
-        ├── editor.lua      # Editor plugins (Treesitter)
-        ├── go.lua          # Go language support
-        ├── lsp.lua         # LSP and completion
-        ├── performance.lua # Performance-focused plugins
-        ├── rust.lua        # Rust language support
-        ├── style.lua       # Colorscheme
-        └── utility.lua     # Utility plugins
-```
-
-## ⌨️ Key Mappings
-
-### Leader Key (Space)
+### General
 - `<leader>w` - Save file
 - `<leader>q` - Quit
 - `<leader>Q` - Quit all
-- `<leader>ev` - Edit vimrc
-- `<leader>sv` - Source vimrc
+- `<leader>h` - Clear search highlights
 
 ### Window Management
-- `<C-h/j/k/l>` - Navigate windows
-- `<leader>wv` - Split vertically
-- `<leader>ws` - Split horizontally
-- `<leader>wc` - Close window
-- `<leader>wo` - Close other windows
+- `<C-h/j/k/l>` - Navigate between windows
+- `<leader>sv` - Split vertically
+- `<leader>sh` - Split horizontally
 
 ### Buffer Management
 - `<leader>bn` - Next buffer
 - `<leader>bp` - Previous buffer
 - `<leader>bd` - Delete buffer
-- `<leader>ba` - Delete all buffers
 
-### Tab Management
-- `<leader>tn` - New tab
-- `<leader>tc` - Close tab
-- `<leader>th` - Previous tab
-- `<leader>tl` - Next tab
+### Telescope
+- `<leader>ff` - Find files
+- `<leader>fg` - Live grep
+- `<leader>fb` - Buffers
+- `<leader>fh` - Help tags
 
-### File Operations
-- `<space>ff` - Find files (Telescope)
-- `<space>fg` - Live grep (Telescope)
-- `<space>fb` - Buffers (Telescope)
-- `<C-n>` - Toggle file tree
-- `<C-\>` - Toggle terminal
-
-### LSP Commands
+### LSP
 - `gd` - Go to definition
 - `gr` - Go to references
-- `K` - Hover documentation
-- `<space>ca` - Code actions
-- `<space>f` - Format document
-- `<space>rn` - Rename symbol
+- `K` - Hover
+- `<leader>ca` - Code actions
+- `<leader>rn` - Rename
 
-## 🎨 UI Enhancements
+### Terminal
+- `<leader>tt` - Toggle terminal
+- `<C-\>` - Toggle terminal (alternative)
 
-### Visual Improvements
-- **Kanagawa colorscheme**: Beautiful, eye-friendly theme
-- **Status line**: Lualine with git and LSP information
-- **Indent guides**: Visual indentation indicators
-- **Git signs**: Real-time git status in gutter
-- **Smooth animations**: Enhanced visual feedback
+### File Explorer
+- `<leader>e` - Toggle NvimTree
+- `<leader>o` - Focus NvimTree
 
-### Focus Features
-- **Zen mode**: Distraction-free editing
-- **Twilight**: Dim inactive code
-- **Context highlighting**: Show current function/class context
+### Comments
+- `<leader>cc` - Toggle line comment
+- `<leader>cb` - Toggle block comment
 
-## ⚡ Performance Settings
+## Installation
 
-### Startup Optimization
-- Lazy loading for all plugins
-- Disabled unnecessary built-in plugins
-- Optimized plugin manager settings
-- Reduced timeout values
-
-### Runtime Performance
-- Conditional plugin loading
-- Large file detection and optimization
-- Memory-efficient configurations
-- Debounced operations
-
-### File Type Optimizations
-- Language-specific settings
-- Auto-formatting on save
-- Performance thresholds for large files
-- Optimized LSP configurations
-
-## 🔧 Installation
-
-1. **Backup your current config**:
-   ```bash
-   mv ~/.config/nvim ~/.config/nvim.backup
-   ```
-
-2. **Clone this configuration**:
+1. Clone this repository to your Neovim config directory:
    ```bash
    git clone <repository-url> ~/.config/nvim
    ```
 
-3. **Install dependencies**:
-   ```bash
-   # Install ripgrep for Telescope
-   sudo pacman -S ripgrep fd
-   
-   # Install language servers (optional)
-   sudo pacman -S gopls rust-analyzer typescript-language-server
-   ```
+2. Install Neovim (version 0.8.0 or higher)
 
-4. **Start Neovim**:
+3. Start Neovim and wait for plugins to install:
    ```bash
    nvim
    ```
 
-## 🚀 Getting Started
+## Plugin Manager
 
-1. **First launch**: Plugins will auto-install
-2. **Check health**: Run `:checkhealth` to verify setup
-3. **Explore keymaps**: Press `<leader>h` for help
-4. **Run tests**: Use test scripts in `tests/` directory to verify functionality
-5. **Read docs**: Check `docs/` directory for detailed documentation
-6. **Customize**: Edit `lua/core/keymaps.lua` for personal preferences
+This configuration uses [Lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager. It will be automatically installed on first run.
 
-## 📊 Performance Metrics
+## LSP Setup
 
-- **Startup time**: ~200ms (cold start)
-- **Memory usage**: ~50MB (typical usage)
-- **Plugin count**: 25 essential plugins
-- **Language support**: 20+ programming languages
+The configuration includes Mason for easy LSP installation. Supported languages include:
+- Lua
+- Rust
+- C/C++
+- Python
+- TypeScript/JavaScript
+- Go
 
-## 🔄 Updates
+LSP servers will be automatically installed when you open files of the corresponding language.
 
-- **Auto-update**: Plugins update automatically
-- **Manual update**: Run `:Lazy sync` to update plugins
-- **Configuration**: Edit files and restart Neovim
+## Rust Development
 
-## 🧪 Testing
+For Rust development, the configuration includes:
+- rust-analyzer for LSP
+- rust-tools for enhanced Rust support
+- crates.nvim for Cargo.toml management
 
-The configuration includes comprehensive test scripts in the `tests/` directory:
+## Colorscheme
 
-- **Core tests**: `tests/test_issues.lua` - Test which-key and fidget configuration
-- **Plugin tests**: Test individual plugins (Telescope, Treesitter, etc.)
-- **Project tests**: `tests/test_react_telescope.lua` - Test React/Vite project support
-- **Cleanup**: `tests/cleanup.lua` - Fix configuration issues
+The configuration uses the Kanagawa colorscheme with the "wave" theme by default.
 
-Run tests with: `:lua dofile("tests/test_name.lua")`
+## File Structure
 
-See `tests/README.md` for detailed test documentation.
-
-## 🐛 Troubleshooting
-
-For detailed troubleshooting information, see [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
-
-### Common Issues
-1. **Slow startup**: Check for conflicting plugins
-2. **LSP not working**: Install language servers
-3. **Missing icons**: Install Nerd Fonts
-4. **Performance issues**: Check file size limits
-
-### Debug Commands
-- `:checkhealth` - Check system health
-- `:Lazy log` - View plugin manager logs
-- `:LspInfo` - Check LSP status
-- `:Telescope diagnostics` - View all diagnostics
-
-## 📝 Customization
-
-### Adding Plugins
-Edit the appropriate file in `lua/plugins/`:
-```lua
-return {
-  {
-    "plugin-name/plugin-repo",
-    config = function()
-      -- Plugin configuration
-    end,
-  },
-}
+```
+nvim/
+├── init.lua              # Main entry point
+├── lua/
+│   ├── core/             # Core configuration
+│   │   ├── options.lua   # Neovim options
+│   │   ├── keymaps.lua   # Keybindings
+│   │   ├── lazy.lua      # Plugin manager config
+│   │   ├── utils.lua     # Utility functions
+│   │   └── startup.lua   # Startup configuration
+│   └── plugins/          # Plugin configurations
+│       ├── init.lua      # Plugin loader
+│       ├── colorscheme.lua
+│       ├── lsp.lua
+│       ├── rust.lua
+│       ├── telescope.lua
+│       ├── treesitter.lua
+│       ├── toggleterm.lua
+│       ├── nvimtree.lua
+│       ├── editor.lua
+│       └── utility.lua
+└── README.md
 ```
 
-### Modifying Keymaps
-Edit `lua/core/keymaps.lua`:
-```lua
--- Add your custom keymaps here
-km("n", "<your-key>", "<your-command>", opt)
-```
+## Requirements
 
-### Changing Colorscheme
-Edit `lua/plugins/style.lua`:
-```lua
-vim.cmd.colorscheme("your-colorscheme")
-```
+- Neovim 0.8.0 or higher
+- Git
+- A C compiler (for some plugins)
+- ripgrep (for Telescope live grep)
 
-## 🤝 Contributing
+## Troubleshooting
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+If you encounter issues:
 
-## 📄 License
+1. Make sure you have Neovim 0.8.0 or higher
+2. Check that all dependencies are installed
+3. Run `:checkhealth` in Neovim to see detailed information
+4. Check the logs with `:Lazy log`
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+## Contributing
 
-## 🙏 Acknowledgments
-
-- [Lazy.nvim](https://github.com/folke/lazy.nvim) - Plugin manager
-- [Neovim](https://neovim.io/) - The editor
-- [All plugin authors](https://github.com/neovim/nvim-lspconfig#built-in-configurations) - For their amazing work
-
----
-
-**Happy coding! 🚀** 
+Feel free to submit issues and enhancement requests! 
