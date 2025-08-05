@@ -17,11 +17,15 @@ require("lazy").setup({
 	},
 	defaults = {
 		lazy = true,
+		version = false, -- Always use the latest git commit
 	},
   checker = {
-    enabled = false, -- check for plugin updates periodically
-    notify = true, -- notify on update
-  }, -- automatically check for plugin updates
+    enabled = false, -- Disable plugin update checker for performance
+    notify = false,
+  },
+  change_detection = {
+    notify = false, -- Disable change detection notifications
+  },
   performance = {
     rtp = {
       disabled_plugins = {
@@ -30,7 +34,30 @@ require("lazy").setup({
         "tohtml",
         "tutor",
         "zipPlugin",
+        "netrwPlugin",
+        "matchparen",
+        "matchit",
+        "logiPat",
+        "rplugin",
+        "spellfile",
+        "vimball",
+        "vimballPlugin",
+        "2html_plugin",
+        "logipat",
+        "rrhelper",
+        "getscript",
+        "getscriptPlugin",
       },
     },
+  },
+  ui = {
+    border = "rounded",
+    icons = {
+      loaded = "●",
+      not_loaded = "○",
+    },
+  },
+  install = {
+    colorscheme = { "kanagawa" },
   },
 })
