@@ -91,13 +91,16 @@ Uncomment the performance monitoring section in `init.lua` to profile your Neovi
 nvim/
 ├── init.lua              # Main entry point
 ├── lua/
-│   └── core/
-│       ├── init.lua      # Core module loader
-│       ├── performance.lua # Performance optimizations
-│       ├── options.lua   # Editor options and settings
-│       ├── ui.lua        # UI and colorscheme
-│       ├── keymaps.lua   # Key mappings
-│       └── autocmds.lua  # Autocommands and file types
+│   ├── core/
+│   │   ├── init.lua      # Core module loader
+│   │   ├── performance.lua # Performance optimizations
+│   │   ├── options.lua   # Editor options and settings
+│   │   ├── ui.lua        # UI and colorscheme
+│   │   ├── keymaps.lua   # Key mappings
+│   │   └── autocmds.lua  # Autocommands and file types
+│   └── plugins/
+│       ├── init.lua      # Plugin specifications
+│       └── lazy.lua      # Lazy.nvim configuration
 └── README.md
 ```
 
@@ -154,20 +157,65 @@ vim.api.nvim_create_autocmd("FileType", {
 
 This configuration uses a modular approach for better organization and maintainability:
 
-- **`lua/core/performance.lua`** - Performance optimizations and disabled plugins
-- **`lua/core/options.lua`** - Core editor settings, indentation, search, and file handling
-- **`lua/core/ui.lua`** - UI configuration, colorscheme, and statusline
-- **`lua/core/keymaps.lua`** - All key mappings for navigation and editing
-- **`lua/core/autocmds.lua`** - Autocommands and file type specific settings
-- **`lua/core/init.lua`** - Core module loader that initializes all components
+### Core Modules (`lua/core/`)
+- **`performance.lua`** - Performance optimizations and disabled plugins
+- **`options.lua`** - Core editor settings, indentation, search, and file handling
+- **`ui.lua`** - UI configuration, colorscheme, and statusline
+- **`keymaps.lua`** - All key mappings for navigation and editing
+- **`autocmds.lua`** - Autocommands and file type specific settings
+- **`init.lua`** - Core module loader that initializes all components
+
+### Plugin Management (`lua/plugins/`)
+- **`lazy.lua`** - Lazy.nvim plugin manager configuration
+- **`init.lua`** - Plugin specifications and configurations
 
 This structure makes it easy to:
 - **Modify specific features** without affecting others
 - **Add new functionality** by creating new modules
 - **Debug issues** by isolating them to specific modules
 - **Share configurations** by copying individual modules
+- **Manage plugins** separately from core functionality
 
-## Why No Plugins?
+## Plugin Management
+
+This configuration includes **Lazy.nvim** as a plugin manager, ready for future plugin installations:
+
+### Adding Plugins
+To add plugins, edit `lua/plugins/init.lua`:
+
+```lua
+M.plugins = {
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme "tokyonight"
+    end,
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      -- Telescope configuration
+    end,
+  },
+}
+```
+
+### Plugin Management Commands
+- `:Lazy` - Open Lazy.nvim UI
+- `:Lazy sync` - Install/update plugins
+- `:Lazy clean` - Remove unused plugins
+- `:Lazy check` - Check for plugin updates
+
+### Performance Considerations
+- Plugins are loaded lazily by default
+- Disabled version checking and change detection for performance
+- Configured with optimal concurrency settings
+- Maintains the high-performance core configuration
+
+## Why Start Without Plugins?
 
 This configuration prioritizes:
 - **Speed**: No plugin loading overhead
@@ -175,7 +223,7 @@ This configuration prioritizes:
 - **Simplicity**: Easy to understand and maintain
 - **Portability**: Works on any system with Neovim
 
-The built-in Neovim features are powerful enough for most text editing tasks, and this configuration maximizes their potential.
+The built-in Neovim features are powerful enough for most text editing tasks, and this configuration maximizes their potential. Lazy.nvim is included for future extensibility while maintaining the performance-first approach.
 
 ## License
 

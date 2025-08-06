@@ -16,6 +16,9 @@ function M.setup()
   ui.setup()
   keymaps.setup()
   autocmds.setup()
+  
+  -- Load Lazy.nvim plugin manager
+  require("plugins.lazy").setup()
 end
 
 return M
