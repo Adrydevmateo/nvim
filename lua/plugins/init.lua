@@ -394,86 +394,111 @@ M.plugins = {
       local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-                    -- Rust LSP configuration
-       lspconfig.rust_analyzer.setup({
-         capabilities = capabilities,
-         settings = {
-           ["rust-analyzer"] = {
-             checkOnSave = {
-               enable = true,
-               command = "clippy",
-             },
-             cargo = {
-               allFeatures = true,
-             },
-             diagnostics = {
-               enable = true,
-             },
-             inlayHints = {
-               enable = true,
-               showParameterHints = true,
-               showTypeHints = true,
-               showChainingHints = true,
-               showOtherHints = true,
-             },
-             lens = {
-               enable = true,
-               run = true,
-               debug = true,
-               implementations = true,
-               references = true,
-             },
-             hover = {
-               enable = true,
-             },
-             completion = {
-               enable = true,
-               autoimport = {
-                 enable = true,
-               },
-             },
-             assist = {
-               enable = true,
-               emitMustUse = true,
-               importGranularity = "module",
-               importPrefix = "self",
-             },
-             callInfo = {
-               enable = true,
-             },
-             cargo = {
-               loadOutDirsFromCheck = true,
-               runBuildScripts = true,
-               buildScripts = {
-                 enable = true,
-               },
-             },
-             procMacro = {
-               enable = true,
-             },
-           },
-         },
-       })
-
-      -- LSP diagnostic configuration
+      -- Performance-optimized LSP diagnostic configuration
       vim.diagnostic.config({
-        virtual_text = true,
+        virtual_text = false, -- Disable inline diagnostics for better performance
         signs = true,
         underline = true,
         update_in_insert = false,
         severity_sort = true,
+        float = {
+          border = "rounded",
+          source = "always",
+          header = "",
+          prefix = "",
+        },
       })
 
-      -- LSP signs
+      -- LSP signs with minimal icons
       local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
+
+      -- Performance-optimized Rust LSP configuration
+      lspconfig.rust_analyzer.setup({
+        capabilities = capabilities,
+        flags = {
+          debounce_text_changes = 150, -- Debounce text changes for better performance
+        },
+        settings = {
+          ["rust-analyzer"] = {
+            checkOnSave = {
+              enable = true,
+              command = "check", -- Use 'check' instead of 'clippy' for faster analysis
+            },
+            cargo = {
+              allFeatures = false, -- Disable all features for faster loading
+              loadOutDirsFromCheck = true,
+              runBuildScripts = false, -- Disable build scripts for faster startup
+              buildScripts = {
+                enable = false,
+              },
+            },
+            diagnostics = {
+              enable = true,
+              disabled = {
+                "unresolved-proc-macro",
+                "missing-unsafe",
+              },
+            },
+            inlayHints = {
+              enable = false, -- Disable inlay hints for better performance
+            },
+            lens = {
+              enable = false, -- Disable code lens for better performance
+            },
+            hover = {
+              enable = true,
+              actions = {
+                enable = false, -- Disable hover actions for better performance
+              },
+            },
+            completion = {
+              enable = true,
+              autoimport = {
+                enable = true,
+              },
+            },
+            assist = {
+              enable = true,
+              emitMustUse = false, -- Disable must-use warnings for better performance
+              importGranularity = "module",
+              importPrefix = "self",
+            },
+            callInfo = {
+              enable = false, -- Disable call info for better performance
+            },
+            procMacro = {
+              enable = true,
+            },
+            workspace = {
+              symbol = {
+                search = {
+                  kind = "only_types", -- Limit symbol search to types only
+                },
+              },
+            },
+          },
+        },
+      })
+
+      -- Performance optimizations for LSP
+      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+        border = "rounded",
+        max_width = 80,
+        max_height = 20,
+      })
+
+      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+        border = "rounded",
+        max_width = 80,
+      })
     end,
   },
 
-  -- Mason for LSP installation
+  -- Mason for LSP installation (lazy loaded)
   {
     "williamboman/mason.nvim",
     cmd = "Mason",
@@ -487,24 +512,28 @@ M.plugins = {
             package_uninstalled = "✗",
           },
         },
+        -- Performance optimizations
+        max_concurrent_installers = 1, -- Limit concurrent installations
+        install_root_dir = vim.fn.stdpath("data") .. "/mason",
       })
     end,
   },
 
-  -- Mason LSP config
+  -- Mason LSP config (lazy loaded)
   {
     "williamboman/mason-lspconfig.nvim",
+    cmd = { "LspInstall", "LspUninstall" },
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
           "rust_analyzer",
         },
-        automatic_installation = true,
+        automatic_installation = false, -- Disable automatic installation for better performance
       })
     end,
   },
 
-  -- Completion
+  -- Completion (lazy loaded on insert)
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
@@ -520,7 +549,7 @@ M.plugins = {
       local cmp = require("cmp")
       local luasnip = require("luasnip")
 
-      -- Load friendly snippets
+      -- Load friendly snippets lazily
       require("luasnip.loaders.from_vscode").lazy_load()
 
       cmp.setup({
@@ -560,10 +589,10 @@ M.plugins = {
           end, { "i", "s" }),
         },
         sources = {
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "buffer" },
-          { name = "path" },
+          { name = "nvim_lsp", priority = 1000 },
+          { name = "luasnip", priority = 750 },
+          { name = "buffer", priority = 500 },
+          { name = "path", priority = 250 },
         },
         formatting = {
           format = function(entry, item)
@@ -575,6 +604,23 @@ M.plugins = {
             })[entry.source.name]
             return item
           end,
+        },
+        -- Performance optimizations
+        completion = {
+          completeopt = "menuone,noselect,noinsert",
+        },
+        window = {
+          completion = {
+            border = "rounded",
+            col_offset = -3,
+            side_padding = 0,
+          },
+          documentation = {
+            border = "rounded",
+          },
+        },
+        experimental = {
+          ghost_text = false, -- Disable ghost text for better performance
         },
       })
     end,
