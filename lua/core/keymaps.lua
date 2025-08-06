@@ -79,6 +79,17 @@ function M.setup()
   map("n", "<leader>o", ":NvimTreeFocus<CR>", opts) -- Focus file explorer
   map("n", "<leader>r", ":NvimTreeRefresh<CR>", opts) -- Refresh file explorer
   map("n", "<leader>n", ":NvimTreeFindFile<CR>", opts) -- Find current file in tree
+
+  -- Treesitter keymaps
+  map("n", "<leader>ts", ":TSUpdate<CR>", opts) -- Update Treesitter parsers
+  map("n", "<leader>ti", ":TSInstallInfo<CR>", opts) -- Show installed parsers
+
+  -- Performance keymaps
+  map("n", "<leader>ps", ":syntax sync fromstart<CR>", opts) -- Sync syntax from start
+  map("n", "<leader>pc", ":syntax clear<CR>", opts) -- Clear syntax highlighting
+  map("n", "<leader>pr", ":redraw!<CR>", opts) -- Force redraw
+  map("n", "<leader>pm", ":messages<CR>", opts) -- Show messages
+  map("n", "<leader>pl", ":lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>", opts) -- Stop LSP clients
 end
 
 return M

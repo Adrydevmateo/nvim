@@ -7,8 +7,6 @@ function M.setup()
   -- Core editor settings
   vim.opt.number = true -- Show line numbers
   vim.opt.relativenumber = true -- Show relative line numbers
-  vim.opt.cursorline = true -- Highlight current line
-  vim.opt.cursorcolumn = true -- Highlight current column
   vim.opt.scrolloff = 8 -- Keep 8 lines above/below cursor
   vim.opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
   vim.opt.wrap = false -- No line wrapping
@@ -28,30 +26,16 @@ function M.setup()
   -- Search settings
   vim.opt.ignorecase = true -- Ignore case in search
   vim.opt.smartcase = true -- Don't ignore case if search contains uppercase
-  vim.opt.incsearch = true -- Show search matches as you type
-  vim.opt.hlsearch = true -- Highlight search matches
-  vim.opt.gdefault = true -- Always use global flag for search/replace
 
   -- File handling
   vim.opt.hidden = true -- Allow switching buffers without saving
   vim.opt.autoread = true -- Auto-reload files changed outside vim
-  vim.opt.backup = false -- No backup files
-  vim.opt.writebackup = false -- No backup files during write
-  vim.opt.swapfile = false -- No swap files
-  vim.opt.undofile = true -- Persistent undo
-  vim.opt.undodir = vim.fn.stdpath("data") .. "/undo" -- Undo directory
 
   -- UI improvements
-  vim.opt.showmode = false -- Don't show mode in status line (handled by statusline)
-  vim.opt.showcmd = true -- Show partial commands in status line
   vim.opt.wildmenu = true -- Command-line completion menu
   vim.opt.wildmode = "list:longest" -- Complete longest common string, then list
-  vim.opt.completeopt = "menuone,noselect" -- Better completion
-  vim.opt.pumheight = 10 -- Maximum number of items in completion menu
   vim.opt.laststatus = 2 -- Always show status line
-  vim.opt.ruler = true -- Show cursor position
   vim.opt.signcolumn = "yes" -- Always show sign column
-  vim.opt.termguicolors = true -- Enable true colors
   vim.opt.background = "dark" -- Dark background
 end
 
