@@ -73,6 +73,12 @@ function M.setup()
   map("t", "<Esc>", "<C-\\><C-n>", opts) -- Exit terminal mode with Esc
   map("t", "jj", "<C-\\><C-n>", opts) -- Exit terminal mode with jj
   map("t", "jk", "<C-\\><C-n>", opts) -- Exit terminal mode with jk
+
+  -- File manager keymaps
+  map("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- Toggle file explorer
+  map("n", "<leader>o", ":NvimTreeFocus<CR>", opts) -- Focus file explorer
+  map("n", "<leader>r", ":NvimTreeRefresh<CR>", opts) -- Refresh file explorer
+  map("n", "<leader>n", ":NvimTreeFindFile<CR>", opts) -- Find current file in tree
 end
 
 return M
