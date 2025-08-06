@@ -1,49 +1,58 @@
-local opt = vim.opt
-local g = vim.g
+-- Core editor options and settings
+-- Handles basic editor behavior, indentation, search, and file handling
 
--- General
-opt.mouse = "a"
-opt.clipboard = "unnamedplus"
-opt.swapfile = false
-opt.completeopt = "menuone,noselect"
+local M = {}
 
--- Search
-opt.ignorecase = true
-opt.smartcase = true
-opt.hlsearch = true
-opt.incsearch = true
+function M.setup()
+  -- Core editor settings
+  vim.opt.number = true -- Show line numbers
+  vim.opt.relativenumber = true -- Show relative line numbers
+  vim.opt.cursorline = true -- Highlight current line
+  vim.opt.cursorcolumn = true -- Highlight current column
+  vim.opt.scrolloff = 8 -- Keep 8 lines above/below cursor
+  vim.opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
+  vim.opt.wrap = false -- No line wrapping
+  vim.opt.linebreak = true -- Break lines at word boundaries when wrapping
+  vim.opt.showbreak = "↪ " -- Show break indicator
+  vim.opt.list = true -- Show invisible characters
+  vim.opt.listchars = { tab = "▸ ", trail = "·", extends = "❯", precedes = "❮" }
 
--- Indent
-opt.expandtab = true
-opt.shiftwidth = 2
-opt.tabstop = 2
-opt.smartindent = true
+  -- Indentation
+  vim.opt.expandtab = true -- Use spaces instead of tabs
+  vim.opt.shiftwidth = 2 -- Number of spaces for auto-indent
+  vim.opt.tabstop = 2 -- Number of spaces that a tab counts for
+  vim.opt.softtabstop = 2 -- Number of spaces for tab in insert mode
+  vim.opt.autoindent = true -- Copy indent from current line
+  vim.opt.smartindent = true -- Smart auto-indent
 
--- Performance
-opt.hidden = true
-opt.history = 100
-opt.lazyredraw = true
-opt.synmaxcol = 240
-opt.updatetime = 250
+  -- Search settings
+  vim.opt.ignorecase = true -- Ignore case in search
+  vim.opt.smartcase = true -- Don't ignore case if search contains uppercase
+  vim.opt.incsearch = true -- Show search matches as you type
+  vim.opt.hlsearch = true -- Highlight search matches
+  vim.opt.gdefault = true -- Always use global flag for search/replace
 
--- UI
-opt.number = true
-opt.relativenumber = true
-opt.cursorline = true
-opt.signcolumn = "yes"
-opt.termguicolors = true
-opt.showmode = false
-opt.laststatus = 3
-opt.winbar = "%=%m %f"
+  -- File handling
+  vim.opt.hidden = true -- Allow switching buffers without saving
+  vim.opt.autoread = true -- Auto-reload files changed outside vim
+  vim.opt.backup = false -- No backup files
+  vim.opt.writebackup = false -- No backup files during write
+  vim.opt.swapfile = false -- No swap files
+  vim.opt.undofile = true -- Persistent undo
+  vim.opt.undodir = vim.fn.stdpath("data") .. "/undo" -- Undo directory
 
--- Split
-opt.splitbelow = true
-opt.splitright = true
+  -- UI improvements
+  vim.opt.showmode = false -- Don't show mode in status line (handled by statusline)
+  vim.opt.showcmd = true -- Show partial commands in status line
+  vim.opt.wildmenu = true -- Command-line completion menu
+  vim.opt.wildmode = "list:longest" -- Complete longest common string, then list
+  vim.opt.completeopt = "menuone,noselect" -- Better completion
+  vim.opt.pumheight = 10 -- Maximum number of items in completion menu
+  vim.opt.laststatus = 2 -- Always show status line
+  vim.opt.ruler = true -- Show cursor position
+  vim.opt.signcolumn = "yes" -- Always show sign column
+  vim.opt.termguicolors = true -- Enable true colors
+  vim.opt.background = "dark" -- Dark background
+end
 
--- Backup
-opt.backup = false
-opt.writebackup = false
-
--- Global options
-g.mapleader = " "
-g.maplocalleader = " " 
+return M

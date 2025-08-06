@@ -1,48 +1,67 @@
-local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
+-- Key mappings for efficiency
+-- All custom key bindings for navigation, editing, and file operations
 
--- General
-map("n", "<leader>w", "<cmd>w<cr>", opts)
-map("n", "<leader>q", "<cmd>q<cr>", opts)
-map("n", "<leader>Q", "<cmd>qa!<cr>", opts)
-map("n", "<leader>h", "<cmd>nohlsearch<cr>", opts)
+local M = {}
 
--- Window management
-map("n", "<C-h>", "<C-w>h", opts)
-map("n", "<C-j>", "<C-w>j", opts)
-map("n", "<C-k>", "<C-w>k", opts)
-map("n", "<C-l>", "<C-w>l", opts)
-map("n", "<leader>sv", "<cmd>vsplit<cr>", opts)
-map("n", "<leader>sh", "<cmd>split<cr>", opts)
+function M.setup()
+  local map = vim.keymap.set
+  local opts = { noremap = true, silent = true }
 
--- Buffer management
-map("n", "<leader>bn", "<cmd>bnext<cr>", opts)
-map("n", "<leader>bp", "<cmd>bprevious<cr>", opts)
-map("n", "<leader>bd", "<cmd>bdelete<cr>", opts)
+  -- Set leader key
+  vim.g.mapleader = " "
 
--- Move lines
-map("n", "<A-j>", "<cmd>m .+1<cr>==", opts)
-map("n", "<A-k>", "<cmd>m .-2<cr>==", opts)
-map("v", "<A-j>", ":m '>+1<cr>gv=gv", opts)
-map("v", "<A-k>", ":m '<-2<cr>gv=gv", opts)
+  -- Quick navigation
+  map("n", "<C-h>", "<C-w>h", opts)
+  map("n", "<C-j>", "<C-w>j", opts)
+  map("n", "<C-k>", "<C-w>k", opts)
+  map("n", "<C-l>", "<C-w>l", opts)
 
--- Telescope
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
-map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
-map("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
-map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
+  -- Buffer navigation
+  map("n", "<S-l>", ":bnext<CR>", opts)
+  map("n", "<S-h>", ":bprevious<CR>", opts)
 
--- LSP
-map("n", "gd", vim.lsp.buf.definition, opts)
-map("n", "gr", vim.lsp.buf.references, opts)
-map("n", "K", vim.lsp.buf.hover, opts)
-map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-map("n", "<leader>rn", vim.lsp.buf.rename, opts)
+  -- Quick save and quit
+  map("n", "<leader>w", ":w<CR>", opts)
+  map("n", "<leader>q", ":q<CR>", opts)
+  map("n", "<leader>Q", ":q!<CR>", opts)
 
--- Toggleterm
-map("n", "<leader>tt", "<cmd>ToggleTerm<cr>", opts)
-map("t", "<Esc>", "<C-\\><C-n>", opts)
+  -- Search improvements
+  map("n", "n", "nzzzv", opts)
+  map("n", "N", "Nzzzv", opts)
+  map("n", "*", "*zzzv", opts)
+  map("n", "#", "#zzzv", opts)
 
--- NvimTree
-map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", opts)
-map("n", "<leader>o", "<cmd>NvimTreeFocus<cr>", opts) 
+  -- Quick escape from insert mode
+  map("i", "jj", "<Esc>", opts)
+  map("i", "jk", "<Esc>", opts)
+
+  -- Move lines up and down
+  map("n", "<A-j>", ":m .+1<CR>==", opts)
+  map("n", "<A-k>", ":m .-2<CR>==", opts)
+  map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
+  map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+  map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
+  map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
+
+  -- Quick select all
+  map("n", "<leader>a", "ggVG", opts)
+
+  -- Toggle search highlighting
+  map("n", "<leader>h", ":set hlsearch!<CR>", opts)
+
+  -- Quick find and replace
+  map("n", "<leader>r", ":%s/", opts)
+
+  -- Yank to system clipboard
+  map("n", "<leader>y", '"+y', opts)
+  map("v", "<leader>y", '"+y', opts)
+  map("n", "<leader>Y", '"+yg_', opts)
+
+  -- Paste from system clipboard
+  map("n", "<leader>p", '"+p', opts)
+  map("v", "<leader>p", '"+p', opts)
+  map("n", "<leader>P", '"+P', opts)
+  map("v", "<leader>P", '"+P', opts)
+end
+
+return M

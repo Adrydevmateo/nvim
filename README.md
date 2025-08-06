@@ -1,145 +1,182 @@
-# Neovim Configuration
+# High-Performance Neovim Configuration
 
-A modern Neovim configuration with LSP support, Rust development tools, and a beautiful UI.
+A lightweight, fast Neovim configuration optimized for text editing without any external plugins.
 
 ## Features
 
-- **LSP Support**: Full Language Server Protocol support with Mason for easy installation
-- **Rust Support**: Rust-specific tools including rust-analyzer and rust-tools
-- **Telescope**: Fuzzy finder for files, grep, and more
-- **Treesitter**: Advanced syntax highlighting and code parsing
-- **Toggleterm**: Integrated terminal
-- **NvimTree**: File explorer
-- **Kanagawa**: Beautiful colorscheme
-- **Lazy**: Fast plugin manager
-- **Lua**: Written entirely in Lua
+### 🚀 Performance Optimizations
+- Disabled unnecessary built-in plugins (netrw, gzip, zip, etc.)
+- Optimized updatetime and timeout settings
+- Limited syntax highlighting to first 240 columns
+- Reduced memory usage for pattern matching
+- No backup or swap files for faster file operations
 
-## Keybindings
+### 📝 Text Editing Features
+- Smart indentation with 2-space tabs
+- Relative line numbers for better navigation
+- Visual indicators for invisible characters
+- Persistent undo across sessions
+- Auto-reload files changed outside Neovim
 
-### General
-- `<leader>w` - Save file
-- `<leader>q` - Quit
-- `<leader>Q` - Quit all
-- `<leader>h` - Clear search highlights
+### 🎨 UI Enhancements
+- Clean, minimal statusline
+- Cursor line and column highlighting
+- Custom color scheme optimized for performance
+- Better search highlighting
+- Improved completion menu
 
-### Window Management
+### ⌨️ Efficient Key Mappings
+
+#### Navigation
 - `<C-h/j/k/l>` - Navigate between windows
-- `<leader>sv` - Split vertically
-- `<leader>sh` - Split horizontally
+- `<S-h/l>` - Navigate between buffers
+- `n/N` - Search with centered results
+- `*/#` - Search word under cursor
 
-### Buffer Management
-- `<leader>bn` - Next buffer
-- `<leader>bp` - Previous buffer
-- `<leader>bd` - Delete buffer
+#### File Operations
+- `<leader>w` - Quick save
+- `<leader>q` - Quick quit
+- `<leader>Q` - Force quit
 
-### Telescope
-- `<leader>ff` - Find files
-- `<leader>fg` - Live grep
-- `<leader>fb` - Buffers
-- `<leader>fh` - Help tags
+#### Text Manipulation
+- `<leader>a` - Select all text
+- `<A-j/k>` - Move lines up/down
+- `jj` or `jk` - Quick escape from insert mode
+- `<leader>y/p` - Yank/paste to system clipboard
 
-### LSP
-- `gd` - Go to definition
-- `gr` - Go to references
-- `K` - Hover
-- `<leader>ca` - Code actions
-- `<leader>rn` - Rename
-
-### Terminal
-- `<leader>tt` - Toggle terminal
-- `<C-\>` - Toggle terminal (alternative)
-
-### File Explorer
-- `<leader>e` - Toggle NvimTree
-- `<leader>o` - Focus NvimTree
-
-### Comments
-- `<leader>cc` - Toggle line comment
-- `<leader>cb` - Toggle block comment
+#### Search & Replace
+- `<leader>h` - Toggle search highlighting
+- `<leader>r` - Quick find and replace
 
 ## Installation
 
-1. Clone this repository to your Neovim config directory:
+1. Clone or copy this configuration to your Neovim config directory:
    ```bash
-   git clone <repository-url> ~/.config/nvim
+   # For Linux/macOS
+   cp -r . ~/.config/nvim/
+   
+   # Or if you want to backup your existing config
+   mv ~/.config/nvim ~/.config/nvim.backup
+   cp -r . ~/.config/nvim/
    ```
 
-2. Install Neovim (version 0.8.0 or higher)
-
-3. Start Neovim and wait for plugins to install:
+2. Start Neovim:
    ```bash
    nvim
    ```
 
-## Plugin Manager
+## Performance Tips
 
-This configuration uses [Lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager. It will be automatically installed on first run.
+### For Even Better Performance
+1. **Use a fast terminal**: iTerm2, Alacritty, or Kitty
+2. **Enable GPU acceleration** in your terminal
+3. **Use a fast font**: JetBrains Mono, Fira Code, or Source Code Pro
+4. **Disable antivirus scanning** for your project directories
 
-## LSP Setup
+### Monitoring Performance
+Uncomment the performance monitoring section in `init.lua` to profile your Neovim usage:
+```lua
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   callback = function()
+--     vim.cmd("profile start profile.log")
+--     vim.cmd("profile func *")
+--     vim.cmd("profile file *")
+--   end
+-- })
+```
 
-The configuration includes Mason for easy LSP installation. Supported languages include:
-- Lua
-- Rust
-- C/C++
-- Python
-- TypeScript/JavaScript
-- Go
-
-LSP servers will be automatically installed when you open files of the corresponding language.
-
-## Rust Development
-
-For Rust development, the configuration includes:
-- rust-analyzer for LSP
-- rust-tools for enhanced Rust support
-- crates.nvim for Cargo.toml management
-
-## Colorscheme
-
-The configuration uses the Kanagawa colorscheme with the "wave" theme by default.
-
-## File Structure
+## Project Structure
 
 ```
 nvim/
 ├── init.lua              # Main entry point
 ├── lua/
-│   ├── core/             # Core configuration
-│   │   ├── options.lua   # Neovim options
-│   │   ├── keymaps.lua   # Keybindings
-│   │   ├── lazy.lua      # Plugin manager config
-│   │   ├── utils.lua     # Utility functions
-│   │   └── startup.lua   # Startup configuration
-│   └── plugins/          # Plugin configurations
-│       ├── init.lua      # Plugin loader
-│       ├── colorscheme.lua
-│       ├── lsp.lua
-│       ├── rust.lua
-│       ├── telescope.lua
-│       ├── treesitter.lua
-│       ├── toggleterm.lua
-│       ├── nvimtree.lua
-│       ├── editor.lua
-│       └── utility.lua
+│   └── core/
+│       ├── init.lua      # Core module loader
+│       ├── performance.lua # Performance optimizations
+│       ├── options.lua   # Editor options and settings
+│       ├── ui.lua        # UI and colorscheme
+│       ├── keymaps.lua   # Key mappings
+│       └── autocmds.lua  # Autocommands and file types
 └── README.md
 ```
 
-## Requirements
+## Customization
 
-- Neovim 0.8.0 or higher
-- Git
-- A C compiler (for some plugins)
-- ripgrep (for Telescope live grep)
+### Adding Your Own Settings
+Add your custom settings at the end of `init.lua`:
+
+```lua
+-- Load core configuration
+require("core").setup()
+
+-- Your custom settings here
+vim.opt.colorcolumn = "80"
+vim.opt.spell = true
+vim.opt.spelllang = "en_us"
+
+print("High-performance Neovim configuration loaded!")
+```
+
+### File Type Specific Settings
+The configuration includes automatic settings for markdown and text files. To add more file types, edit `lua/core/autocmds.lua`:
+
+```lua
+-- File type specific settings
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "text", "python", "javascript" },
+  callback = function()
+    if vim.bo.filetype == "markdown" or vim.bo.filetype == "text" then
+      vim.opt_local.wrap = true
+      vim.opt_local.linebreak = true
+      vim.opt_local.textwidth = 80
+    elseif vim.bo.filetype == "python" or vim.bo.filetype == "javascript" then
+      vim.opt_local.tabstop = 4
+      vim.opt_local.shiftwidth = 4
+    end
+  end
+})
+```
 
 ## Troubleshooting
 
-If you encounter issues:
+### Slow Startup
+- Check if you have other Neovim configurations in `~/.config/nvim/`
+- Ensure no other init files are being loaded
+- Use `nvim --startuptime startup.log` to profile startup time
 
-1. Make sure you have Neovim 0.8.0 or higher
-2. Check that all dependencies are installed
-3. Run `:checkhealth` in Neovim to see detailed information
-4. Check the logs with `:Lazy log`
+### Performance Issues
+- Monitor system resources while using Neovim
+- Check if any external processes are affecting performance
+- Consider using `nvim --clean` to test without any configuration
 
-## Contributing
+## Modular Architecture
 
-Feel free to submit issues and enhancement requests! 
+This configuration uses a modular approach for better organization and maintainability:
+
+- **`lua/core/performance.lua`** - Performance optimizations and disabled plugins
+- **`lua/core/options.lua`** - Core editor settings, indentation, search, and file handling
+- **`lua/core/ui.lua`** - UI configuration, colorscheme, and statusline
+- **`lua/core/keymaps.lua`** - All key mappings for navigation and editing
+- **`lua/core/autocmds.lua`** - Autocommands and file type specific settings
+- **`lua/core/init.lua`** - Core module loader that initializes all components
+
+This structure makes it easy to:
+- **Modify specific features** without affecting others
+- **Add new functionality** by creating new modules
+- **Debug issues** by isolating them to specific modules
+- **Share configurations** by copying individual modules
+
+## Why No Plugins?
+
+This configuration prioritizes:
+- **Speed**: No plugin loading overhead
+- **Reliability**: No dependency issues
+- **Simplicity**: Easy to understand and maintain
+- **Portability**: Works on any system with Neovim
+
+The built-in Neovim features are powerful enough for most text editing tasks, and this configuration maximizes their potential.
+
+## License
+
+This configuration is provided as-is for educational and personal use.
