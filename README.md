@@ -21,7 +21,7 @@ A lightweight, fast Neovim configuration optimized for text editing without any 
 ### 🎨 UI Enhancements
 - Clean, minimal statusline
 - Cursor line and column highlighting
-- Custom color scheme optimized for performance
+- Kanagawa colorscheme with beautiful Japanese-inspired colors
 - Better search highlighting
 - Improved completion menu
 
@@ -186,11 +186,16 @@ To add plugins, edit `lua/plugins/init.lua`:
 ```lua
 M.plugins = {
   {
-    "folke/tokyonight.nvim",
+    "rebelot/kanagawa.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme "tokyonight"
+      require("kanagawa").setup({
+        theme = "wave", -- wave, dragon, lotus
+        transparent = false,
+        -- ... more configuration
+      })
+      vim.cmd.colorscheme "kanagawa"
     end,
   },
   {
@@ -214,6 +219,19 @@ M.plugins = {
 - Disabled version checking and change detection for performance
 - Configured with optimal concurrency settings
 - Maintains the high-performance core configuration
+
+### Kanagawa Colorscheme
+The configuration includes the beautiful **Kanagawa** colorscheme with:
+- **Three themes**: `wave` (default), `dragon`, and `lotus`
+- **Japanese-inspired colors**: Based on traditional Japanese art
+- **Optimized performance**: Fast loading and rendering
+- **Custom overrides**: Enhanced search highlighting and UI elements
+- **Terminal support**: Full terminal color integration
+
+To switch themes, modify the `theme` option in `lua/plugins/init.lua`:
+```lua
+theme = "dragon", -- Change to "wave", "dragon", or "lotus"
+```
 
 ## Why Start Without Plugins?
 

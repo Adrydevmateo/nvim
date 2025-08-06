@@ -62,6 +62,17 @@ function M.setup()
   map("v", "<leader>p", '"+p', opts)
   map("n", "<leader>P", '"+P', opts)
   map("v", "<leader>P", '"+P', opts)
+
+  -- Terminal keymaps
+  map("n", "<leader>tt", ":ToggleTerm<CR>", opts) -- Toggle terminal
+  map("n", "<leader>tf", ":ToggleTerm direction=float<CR>", opts) -- Toggle float terminal
+  map("n", "<leader>th", ":ToggleTerm direction=horizontal<CR>", opts) -- Toggle horizontal terminal
+  map("n", "<leader>tv", ":ToggleTerm direction=vertical<CR>", opts) -- Toggle vertical terminal
+  
+  -- Terminal mode keymaps (when in terminal)
+  map("t", "<Esc>", "<C-\\><C-n>", opts) -- Exit terminal mode with Esc
+  map("t", "jj", "<C-\\><C-n>", opts) -- Exit terminal mode with jj
+  map("t", "jk", "<C-\\><C-n>", opts) -- Exit terminal mode with jk
 end
 
 return M
