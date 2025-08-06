@@ -363,6 +363,222 @@ M.plugins = {
       vim.g.startuptime_tries = 10
     end,
   },
+
+  -- LSP Support
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+    },
+    config = function()
+      -- LSP keymaps
+      local map = vim.keymap.set
+      local opts = { noremap = true, silent = true }
+
+      -- LSP keymaps
+      map("n", "gd", vim.lsp.buf.definition, opts)
+      map("n", "gr", vim.lsp.buf.references, opts)
+      map("n", "gi", vim.lsp.buf.implementation, opts)
+      map("n", "K", vim.lsp.buf.hover, opts)
+      map("n", "<leader>rn", vim.lsp.buf.rename, opts)
+      map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+      map("n", "<leader>f", vim.lsp.buf.format, opts)
+      map("n", "<leader>d", vim.diagnostic.open_float, opts)
+      map("n", "[d", vim.diagnostic.goto_prev, opts)
+      map("n", "]d", vim.diagnostic.goto_next, opts)
+
+      -- LSP settings
+      local lspconfig = require("lspconfig")
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+                    -- Rust LSP configuration
+       lspconfig.rust_analyzer.setup({
+         capabilities = capabilities,
+         settings = {
+           ["rust-analyzer"] = {
+             checkOnSave = {
+               enable = true,
+               command = "clippy",
+             },
+             cargo = {
+               allFeatures = true,
+             },
+             diagnostics = {
+               enable = true,
+             },
+             inlayHints = {
+               enable = true,
+               showParameterHints = true,
+               showTypeHints = true,
+               showChainingHints = true,
+               showOtherHints = true,
+             },
+             lens = {
+               enable = true,
+               run = true,
+               debug = true,
+               implementations = true,
+               references = true,
+             },
+             hover = {
+               enable = true,
+             },
+             completion = {
+               enable = true,
+               autoimport = {
+                 enable = true,
+               },
+             },
+             assist = {
+               enable = true,
+               emitMustUse = true,
+               importGranularity = "module",
+               importPrefix = "self",
+             },
+             callInfo = {
+               enable = true,
+             },
+             cargo = {
+               loadOutDirsFromCheck = true,
+               runBuildScripts = true,
+               buildScripts = {
+                 enable = true,
+               },
+             },
+             procMacro = {
+               enable = true,
+             },
+           },
+         },
+       })
+
+      -- LSP diagnostic configuration
+      vim.diagnostic.config({
+        virtual_text = true,
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
+      })
+
+      -- LSP signs
+      local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      end
+    end,
+  },
+
+  -- Mason for LSP installation
+  {
+    "williamboman/mason.nvim",
+    cmd = "Mason",
+    config = function()
+      require("mason").setup({
+        ui = {
+          border = "rounded",
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
+          },
+        },
+      })
+    end,
+  },
+
+  -- Mason LSP config
+  {
+    "williamboman/mason-lspconfig.nvim",
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          "rust_analyzer",
+        },
+        automatic_installation = true,
+      })
+    end,
+  },
+
+  -- Completion
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lsp",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+      "rafamadriz/friendly-snippets",
+    },
+    config = function()
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
+
+      -- Load friendly snippets
+      require("luasnip.loaders.from_vscode").lazy_load()
+
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
+        },
+        mapping = {
+          ["<C-p>"] = cmp.mapping.select_prev_item(),
+          ["<C-n>"] = cmp.mapping.select_next_item(),
+          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.close(),
+          ["<CR>"] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+          }),
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+        },
+        sources = {
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = "buffer" },
+          { name = "path" },
+        },
+        formatting = {
+          format = function(entry, item)
+            item.menu = ({
+              nvim_lsp = "[LSP]",
+              luasnip = "[Snippet]",
+              buffer = "[Buffer]",
+              path = "[Path]",
+            })[entry.source.name]
+            return item
+          end,
+        },
+      })
+    end,
+  },
 }
 
 return M

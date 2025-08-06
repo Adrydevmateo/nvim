@@ -90,6 +90,12 @@ function M.setup()
   map("n", "<leader>pr", ":redraw!<CR>", opts) -- Force redraw
   map("n", "<leader>pm", ":messages<CR>", opts) -- Show messages
   map("n", "<leader>pl", ":lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>", opts) -- Stop LSP clients
+
+  -- LSP keymaps
+  map("n", "<leader>li", ":LspInfo<CR>", opts) -- Show LSP info
+  map("n", "<leader>lr", ":LspRestart<CR>", opts) -- Restart LSP
+  map("n", "<leader>ls", ":LspStart<CR>", opts) -- Start LSP
+  map("n", "<leader>lS", ":LspStop<CR>", opts) -- Stop LSP
 end
 
 return M
