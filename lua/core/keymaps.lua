@@ -50,7 +50,7 @@ function M.setup()
   map("n", "<leader>h", ":set hlsearch!<CR>", opts)
 
   -- Quick find and replace
-  map("n", "<leader>r", ":%s/", opts)
+  map("n", "<leader>R", ":%s/", opts) -- Changed from <leader>r to avoid conflict with NvimTree
 
   -- Yank to system clipboard
   map("n", "<leader>y", '"+y', opts)
@@ -96,6 +96,17 @@ function M.setup()
   map("n", "<leader>lr", ":LspRestart<CR>", opts) -- Restart LSP
   map("n", "<leader>ls", ":LspStart<CR>", opts) -- Start LSP
   map("n", "<leader>lS", ":LspStop<CR>", opts) -- Stop LSP
+
+  -- Supermaven keymaps
+  map("n", "<leader>sa", ":SupermavenStart<CR>", opts) -- Start Supermaven
+  map("n", "<leader>ss", ":SupermavenStop<CR>", opts) -- Stop Supermaven
+  map("n", "<leader>sr", ":SupermavenRestart<CR>", opts) -- Restart Supermaven
+  map("n", "<leader>st", ":SupermavenToggle<CR>", opts) -- Toggle Supermaven
+  map("n", "<leader>sS", ":SupermavenStatus<CR>", opts) -- Show Supermaven status
+  map("n", "<leader>sf", ":SupermavenUseFree<CR>", opts) -- Switch to free version
+  map("n", "<leader>sp", ":SupermavenUsePro<CR>", opts) -- Switch to pro version
+  map("n", "<leader>sl", ":SupermavenShowLog<CR>", opts) -- Show Supermaven logs
+  map("n", "<leader>sc", ":SupermavenClearLog<CR>", opts) -- Clear Supermaven logs
 end
 
 return M

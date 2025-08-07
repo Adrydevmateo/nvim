@@ -24,6 +24,7 @@ A lightweight, fast Neovim configuration optimized for text editing without any 
 - Kanagawa colorscheme with beautiful Japanese-inspired colors
 - Better search highlighting
 - Improved completion menu
+- Supermaven AI code completion integration
 
 ### ⌨️ Efficient Key Mappings
 
@@ -46,7 +47,102 @@ A lightweight, fast Neovim configuration optimized for text editing without any 
 
 #### Search & Replace
 - `<leader>h` - Toggle search highlighting
-- `<leader>r` - Quick find and replace
+- `<leader>R` - Quick find and replace
+
+#### Supermaven AI
+- `<Tab>` - Accept AI suggestion
+- `<C-]>` - Clear AI suggestion
+- `<C-l>` - Accept word from AI suggestion
+- `<leader>sa` - Start Supermaven
+- `<leader>ss` - Stop Supermaven
+- `<leader>st` - Toggle Supermaven
+- `<leader>sS` - Show Supermaven status
+- `<leader>sf` - Switch to free version
+- `<leader>sp` - Switch to pro version
+
+#### Treesitter
+- `<C-Tab>` - Node incremental selection
+- `<S-Tab>` - Node decremental selection
+- `<leader>as` - Swap next parameter
+- `<leader>aS` - Swap previous parameter
+
+## Keybinding Reference
+
+### **Resolved Conflicts**
+The following conflicts have been resolved to ensure smooth operation:
+
+- **`<Tab>`**: Now works with both nvim-cmp and Supermaven (priority to nvim-cmp, then Supermaven)
+- **`<leader>a`**: Core "select all" takes precedence over Treesitter parameter swap
+- **`<leader>r`**: NvimTree refresh takes precedence over find/replace (moved to `<leader>R`)
+- **`<leader>f`**: Telescope mappings take precedence over LSP format (moved to `<leader>lf`)
+- **`<C-j>`**: Telescope navigation takes precedence over Supermaven word accept (moved to `<C-l>`)
+
+### **Complete Keybinding List**
+
+#### **Navigation**
+- `<C-h/j/k/l>` - Navigate between windows
+- `<S-h/l>` - Navigate between buffers
+- `n/N` - Search with centered results
+- `*/#` - Search word under cursor
+
+#### **File Operations**
+- `<leader>w` - Quick save
+- `<leader>q` - Quick quit
+- `<leader>Q` - Force quit
+
+#### **Text Manipulation**
+- `<leader>a` - Select all text
+- `<A-j/k>` - Move lines up/down
+- `jj` or `jk` - Quick escape from insert mode
+- `<leader>y/p` - Yank/paste to system clipboard
+
+#### **Search & Replace**
+- `<leader>h` - Toggle search highlighting
+- `<leader>R` - Quick find and replace
+
+#### **Supermaven AI**
+- `<Tab>` - Accept AI suggestion
+- `<C-]>` - Clear AI suggestion
+- `<C-l>` - Accept word from AI suggestion
+- `<leader>sa` - Start Supermaven
+- `<leader>ss` - Stop Supermaven
+- `<leader>st` - Toggle Supermaven
+- `<leader>sS` - Show Supermaven status
+- `<leader>sf` - Switch to free version
+- `<leader>sp` - Switch to pro version
+
+#### **Treesitter**
+- `<C-Tab>` - Node incremental selection
+- `<S-Tab>` - Node decremental selection
+- `<leader>as` - Swap next parameter
+- `<leader>aS` - Swap previous parameter
+
+#### **Telescope**
+- `<leader>ff` - Find files
+- `<leader>fg` - Live grep
+- `<leader>fb` - Buffers
+- `<leader>fh` - Help tags
+- `<leader>fo` - Old files
+- `<leader>fc` - Colorscheme
+- `<leader>fk` - Keymaps
+- `<leader>fs` - Grep string
+- `<leader>fd` - Diagnostics
+- `<leader>fr` - LSP references
+- `<leader>fi` - LSP implementations
+- `<leader>fS` - LSP document symbols
+- `<leader>fw` - LSP workspace symbols
+
+#### **LSP**
+- `gd` - Go to definition
+- `gr` - Go to references
+- `gi` - Go to implementation
+- `K` - Hover
+- `<leader>rn` - Rename
+- `<leader>ca` - Code action
+- `<leader>lf` - Format
+- `<leader>d` - Show diagnostics
+- `[d` - Previous diagnostic
+- `]d` - Next diagnostic
 
 ## Installation
 
@@ -99,7 +195,7 @@ nvim/
 │   │   ├── keymaps.lua   # Key mappings
 │   │   └── autocmds.lua  # Autocommands and file types
 │   └── plugins/
-│       ├── init.lua      # Plugin specifications
+│       ├── init.lua      # Plugin specifications (includes Supermaven)
 │       └── lazy.lua      # Lazy.nvim configuration
 └── README.md
 ```
@@ -214,11 +310,24 @@ M.plugins = {
 - `:Lazy clean` - Remove unused plugins
 - `:Lazy check` - Check for plugin updates
 
+### Supermaven Commands
+- `:SupermavenStart` - Start Supermaven
+- `:SupermavenStop` - Stop Supermaven
+- `:SupermavenRestart` - Restart Supermaven
+- `:SupermavenToggle` - Toggle Supermaven
+- `:SupermavenStatus` - Show Supermaven status
+- `:SupermavenUseFree` - Switch to free version
+- `:SupermavenUsePro` - Switch to pro version
+- `:SupermavenLogout` - Log out of Supermaven
+- `:SupermavenShowLog` - Show Supermaven logs
+- `:SupermavenClearLog` - Clear Supermaven logs
+
 ### Performance Considerations
 - Plugins are loaded lazily by default
 - Disabled version checking and change detection for performance
 - Configured with optimal concurrency settings
 - Maintains the high-performance core configuration
+- Supermaven is integrated with nvim-cmp for seamless completion experience
 
 ### Kanagawa Colorscheme
 The configuration includes the beautiful **Kanagawa** colorscheme with:
@@ -236,12 +345,13 @@ theme = "dragon", -- Change to "wave", "dragon", or "lotus"
 ## Why Start Without Plugins?
 
 This configuration prioritizes:
-- **Speed**: No plugin loading overhead
-- **Reliability**: No dependency issues
+- **Speed**: Minimal plugin loading overhead
+- **Reliability**: Carefully selected, stable plugins
 - **Simplicity**: Easy to understand and maintain
 - **Portability**: Works on any system with Neovim
+- **AI Integration**: Supermaven provides intelligent code completion
 
-The built-in Neovim features are powerful enough for most text editing tasks, and this configuration maximizes their potential. Lazy.nvim is included for future extensibility while maintaining the performance-first approach.
+The built-in Neovim features are powerful enough for most text editing tasks, and this configuration maximizes their potential. Essential plugins like Supermaven for AI completion and Lazy.nvim for plugin management are included while maintaining the performance-first approach.
 
 ## License
 

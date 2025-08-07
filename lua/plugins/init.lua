@@ -299,7 +299,7 @@ M.plugins = {
           keymaps = {
             init_selection = "<CR>",
             scope_incremental = "<CR>",
-            node_incremental = "<TAB>",
+            node_incremental = "<C-TAB>", -- Changed from <TAB> to avoid conflict
             node_decremental = "<S-TAB>",
           },
         },
@@ -344,10 +344,10 @@ M.plugins = {
           swap = {
             enable = true,
             swap_next = {
-              ["<leader>a"] = "@parameter.inner",
+              ["<leader>as"] = "@parameter.inner", -- Changed from <leader>a to avoid conflict
             },
             swap_previous = {
-              ["<leader>A"] = "@parameter.inner",
+              ["<leader>aS"] = "@parameter.inner", -- Changed from <leader>A to avoid conflict
             },
           },
         },
@@ -500,7 +500,7 @@ M.plugins = {
       map("n", "K", vim.lsp.buf.hover, opts)
       map("n", "<leader>rn", vim.lsp.buf.rename, opts)
       map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-      map("n", "<leader>f", vim.lsp.buf.format, opts)
+      map("n", "<leader>lf", vim.lsp.buf.format, opts) -- Changed from <leader>f to avoid conflict with Telescope
       map("n", "<leader>d", vim.diagnostic.open_float, opts)
       map("n", "[d", vim.diagnostic.goto_prev, opts)
       map("n", "]d", vim.diagnostic.goto_next, opts)
@@ -648,6 +648,32 @@ M.plugins = {
     end,
   },
 
+  -- Supermaven AI code completion
+  {
+    "supermaven-inc/supermaven-nvim",
+    event = "InsertEnter",
+    config = function()
+      require("supermaven-nvim").setup({
+        keymaps = {
+          accept_suggestion = "<Tab>",
+          clear_suggestion = "<C-]>",
+          accept_word = "<C-l>", -- Changed from <C-j> to avoid conflict with Telescope
+        },
+        ignore_filetypes = {}, -- No ignored filetypes
+        color = {
+          suggestion_color = "#6CC644", -- Supermaven green color
+          cterm = 244,
+        },
+        log_level = "info",
+        disable_inline_completion = false,
+        disable_keymaps = false,
+        condition = function()
+          return false -- Always enable Supermaven
+        end,
+      })
+    end,
+  },
+
   -- Completion (lazy loaded on insert)
   {
     "hrsh7th/nvim-cmp",
@@ -690,6 +716,7 @@ M.plugins = {
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
             else
+              -- Let Supermaven handle Tab if no other completion is active
               fallback()
             end
           end, { "i", "s" }),
@@ -704,6 +731,7 @@ M.plugins = {
           end, { "i", "s" }),
         },
         sources = {
+          { name = "supermaven", priority = 1500 }, -- Supermaven with highest priority
           { name = "nvim_lsp", priority = 1000 },
           { name = "luasnip", priority = 750 },
           { name = "buffer", priority = 500 },
@@ -712,6 +740,7 @@ M.plugins = {
         formatting = {
           format = function(entry, item)
             item.menu = ({
+              supermaven = "[AI]",
               nvim_lsp = "[LSP]",
               luasnip = "[Snippet]",
               buffer = "[Buffer]",
