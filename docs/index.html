@@ -182,7 +182,7 @@ cp -r . ~/.config/nvim/</code></pre>
                         <button class="tab-btn active" data-category="navigation">Navigation</button>
                         <button class="tab-btn" data-category="editing">Editing</button>
                         <button class="tab-btn" data-category="ai">AI</button>
-                        <button class="tab-btn" data-category="plugins">Plugins</button>
+                        <button class="tab-btn" data-category="plugin-keys">Plugins</button>
                         <button class="tab-btn" data-category="lsp">LSP</button>
                     </div>
 
@@ -270,7 +270,7 @@ cp -r . ~/.config/nvim/</code></pre>
                             </div>
                         </div>
 
-                        <div id="plugins" class="category-panel">
+                        <div id="plugin-keys" class="category-panel">
                             <div class="keybinding-grid">
                                 <div class="keybinding-item">
                                     <kbd>&lt;leader&gt;ff</kbd>
@@ -449,6 +449,93 @@ cp -r . ~/.config/nvim/</code></pre>
                                 <li><code>wave</code> - Default theme</li>
                                 <li><code>dragon</code> - Dragon theme</li>
                                 <li><code>lotus</code> - Lotus theme</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="plugin-card">
+                        <div class="plugin-header">
+                            <h3><i class="fas fa-code"></i> LSP Config</h3>
+                            <span class="plugin-type">Language Server</span>
+                        </div>
+                        <p>Language Server Protocol support for enhanced code intelligence.</p>
+                        <div class="plugin-features">
+                            <span class="feature-tag">Code Intelligence</span>
+                            <span class="feature-tag">Auto-completion</span>
+                            <span class="feature-tag">Error Detection</span>
+                        </div>
+                        <div class="plugin-commands">
+                            <h4>Keybindings:</h4>
+                            <ul>
+                                <li><kbd>gd</kbd> - Go to definition</li>
+                                <li><kbd>gr</kbd> - Go to references</li>
+                                <li><kbd>K</kbd> - Hover</li>
+                                <li><kbd>&lt;leader&gt;rn</kbd> - Rename</li>
+                                <li><kbd>&lt;leader&gt;ca</kbd> - Code action</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="plugin-card">
+                        <div class="plugin-header">
+                            <h3><i class="fas fa-puzzle-piece"></i> nvim-cmp</h3>
+                            <span class="plugin-type">Completion</span>
+                        </div>
+                        <p>Advanced completion engine with multiple sources.</p>
+                        <div class="plugin-features">
+                            <span class="feature-tag">LSP Completion</span>
+                            <span class="feature-tag">Snippet Support</span>
+                            <span class="feature-tag">Buffer Completion</span>
+                        </div>
+                        <div class="plugin-commands">
+                            <h4>Keybindings:</h4>
+                            <ul>
+                                <li><kbd>&lt;C-n&gt;</kbd> - Next item</li>
+                                <li><kbd>&lt;C-p&gt;</kbd> - Previous item</li>
+                                <li><kbd>&lt;Tab&gt;</kbd> - Select next</li>
+                                <li><kbd>&lt;S-Tab&gt;</kbd> - Select previous</li>
+                                <li><kbd>&lt;CR&gt;</kbd> - Confirm selection</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="plugin-card">
+                        <div class="plugin-header">
+                            <h3><i class="fas fa-tools"></i> Mason</h3>
+                            <span class="plugin-type">Package Manager</span>
+                        </div>
+                        <p>Portable package manager for Neovim that runs everywhere Neovim runs.</p>
+                        <div class="plugin-features">
+                            <span class="feature-tag">LSP Installation</span>
+                            <span class="feature-tag">DAP Installation</span>
+                            <span class="feature-tag">Linter Installation</span>
+                        </div>
+                        <div class="plugin-commands">
+                            <h4>Commands:</h4>
+                            <ul>
+                                <li><code>:Mason</code> - Open Mason UI</li>
+                                <li><code>:LspInstall</code> - Install LSP</li>
+                                <li><code>:LspUninstall</code> - Uninstall LSP</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="plugin-card">
+                        <div class="plugin-header">
+                            <h3><i class="fas fa-clock"></i> Startup Time</h3>
+                            <span class="plugin-type">Performance</span>
+                        </div>
+                        <p>Monitor and analyze Neovim startup performance.</p>
+                        <div class="plugin-features">
+                            <span class="feature-tag">Performance Monitoring</span>
+                            <span class="feature-tag">Startup Analysis</span>
+                            <span class="feature-tag">Optimization Tips</span>
+                        </div>
+                        <div class="plugin-commands">
+                            <h4>Commands:</h4>
+                            <ul>
+                                <li><code>:StartupTime</code> - Show startup time</li>
+                                <li><code>:StartupTime --tries 10</code> - Run 10 times</li>
                             </ul>
                         </div>
                     </div>
