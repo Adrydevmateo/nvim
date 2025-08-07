@@ -364,6 +364,121 @@ M.plugins = {
     end,
   },
 
+  -- Telescope for fuzzy finding
+  {
+    "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+        cond = function()
+          return vim.fn.executable("make") == 1
+        end,
+      },
+    },
+    config = function()
+      local telescope = require("telescope")
+      local actions = require("telescope.actions")
+
+      telescope.setup({
+        defaults = {
+          prompt_prefix = " ",
+          selection_caret = " ",
+          path_display = { "truncate" },
+          file_ignore_patterns = {
+            "node_modules",
+            ".git",
+            ".cache",
+            "%.o",
+            "%.a",
+            "%.out",
+            "%.class",
+            "%.pdf",
+            "%.mkv",
+            "%.mp4",
+            "%.zip",
+          },
+          mappings = {
+            i = {
+              ["<C-n>"] = actions.cycle_history_next,
+              ["<C-p>"] = actions.cycle_history_prev,
+              ["<C-j>"] = actions.move_selection_next,
+              ["<C-k>"] = actions.move_selection_previous,
+              ["<C-c>"] = actions.close,
+              ["<Down>"] = actions.move_selection_next,
+              ["<Up>"] = actions.move_selection_previous,
+              ["<CR>"] = actions.select_default,
+              ["<C-x>"] = actions.select_horizontal,
+              ["<C-v>"] = actions.select_vertical,
+              ["<C-t>"] = actions.select_tab,
+              ["<C-u>"] = actions.preview_scrolling_up,
+              ["<C-d>"] = actions.preview_scrolling_down,
+            },
+            n = {
+              ["<esc>"] = actions.close,
+              ["<CR>"] = actions.select_default,
+              ["<C-x>"] = actions.select_horizontal,
+              ["<C-v>"] = actions.select_vertical,
+              ["<C-t>"] = actions.select_tab,
+              ["j"] = actions.move_selection_next,
+              ["k"] = actions.move_selection_previous,
+              ["<C-u>"] = actions.preview_scrolling_up,
+              ["<C-d>"] = actions.preview_scrolling_down,
+            },
+          },
+        },
+        pickers = {
+          find_files = {
+            hidden = true,
+            no_ignore = false,
+            no_ignore_parent = false,
+          },
+          live_grep = {
+            additional_args = function()
+              return { "--hidden" }
+            end,
+          },
+          grep_string = {
+            additional_args = function()
+              return { "--hidden" }
+            end,
+          },
+        },
+        extensions = {
+          fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
+          },
+        },
+      })
+
+      -- Load extensions
+      telescope.load_extension("fzf")
+
+      -- Telescope keymaps
+      local map = vim.keymap.set
+      local opts = { noremap = true, silent = true }
+
+      map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
+      map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
+      map("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
+      map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
+      map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", opts)
+      map("n", "<leader>fc", "<cmd>Telescope colorscheme<cr>", opts)
+      map("n", "<leader>fk", "<cmd>Telescope keymaps<cr>", opts)
+      map("n", "<leader>fs", "<cmd>Telescope grep_string<cr>", opts)
+      map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", opts)
+      map("n", "<leader>fr", "<cmd>Telescope lsp_references<cr>", opts)
+      map("n", "<leader>fi", "<cmd>Telescope lsp_implementations<cr>", opts)
+      map("n", "<leader>fS", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+      map("n", "<leader>fw", "<cmd>Telescope lsp_workspace_symbols<cr>", opts)
+    end,
+  },
+
   -- LSP Support
   {
     "neovim/nvim-lspconfig",
