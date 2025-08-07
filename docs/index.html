@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High-Performance Neovim Configuration</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h1><i class="fas fa-code"></i> Neovim Config</h1>
+            <p>High-Performance Setup</p>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#overview" class="nav-link active"><i class="fas fa-home"></i> Overview</a></li>
+            <li><a href="#features" class="nav-link"><i class="fas fa-star"></i> Features</a></li>
+            <li><a href="#installation" class="nav-link"><i class="fas fa-download"></i> Installation</a></li>
+            <li><a href="#keybindings" class="nav-link"><i class="fas fa-keyboard"></i> Keybindings</a></li>
+            <li><a href="#plugins" class="nav-link"><i class="fas fa-puzzle-piece"></i> Plugins</a></li>
+            <li><a href="#customization" class="nav-link"><i class="fas fa-cog"></i> Customization</a></li>
+            <li><a href="#troubleshooting" class="nav-link"><i class="fas fa-tools"></i> Troubleshooting</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <section id="overview" class="section active">
+            <div class="container">
+                <h1><i class="fas fa-rocket"></i> High-Performance Neovim Configuration</h1>
+                <p class="lead">A lightweight, fast Neovim configuration optimized for text editing with AI-powered completion.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <h3>Performance</h3>
+                        <p>Optimized for speed with minimal overhead</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI Integration</h3>
+                        <p>Supermaven AI code completion</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <h3>Modular</h3>
+                        <p>Clean, organized plugin architecture</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-palette"></i>
+                        <h3>Beautiful</h3>
+                        <p>Kanagawa colorscheme with modern UI</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section">
+            <div class="container">
+                <h2><i class="fas fa-star"></i> Features</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3>Performance Optimizations</h3>
+                        <ul>
+                            <li>Disabled unnecessary built-in plugins</li>
+                            <li>Optimized updatetime and timeout settings</li>
+                            <li>Limited syntax highlighting to first 240 columns</li>
+                            <li>Reduced memory usage for pattern matching</li>
+                            <li>No backup or swap files for faster operations</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h3>Text Editing Features</h3>
+                        <ul>
+                            <li>Smart indentation with 2-space tabs</li>
+                            <li>Relative line numbers for better navigation</li>
+                            <li>Visual indicators for invisible characters</li>
+                            <li>Persistent undo across sessions</li>
+                            <li>Auto-reload files changed outside Neovim</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>UI Enhancements</h3>
+                        <ul>
+                            <li>Clean, minimal statusline</li>
+                            <li>Cursor line and column highlighting</li>
+                            <li>Kanagawa colorscheme with beautiful colors</li>
+                            <li>Better search highlighting</li>
+                            <li>Improved completion menu</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>AI Integration</h3>
+                        <ul>
+                            <li>Supermaven AI code completion</li>
+                            <li>Seamless integration with nvim-cmp</li>
+                            <li>Intelligent code suggestions</li>
+                            <li>Customizable keybindings</li>
+                            <li>Free and Pro tier support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="installation" class="section">
+            <div class="container">
+                <h2><i class="fas fa-download"></i> Installation</h2>
+                
+                <div class="installation-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Clone or Copy Configuration</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>Terminal</span>
+                                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                                </div>
+                                <pre><code># For Linux/macOS
+cp -r . ~/.config/nvim/
+
+# Or if you want to backup your existing config
+mv ~/.config/nvim ~/.config/nvim.backup
+cp -r . ~/.config/nvim/</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Start Neovim</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>Terminal</span>
+                                    <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                                </div>
+                                <pre><code>nvim</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Setup Supermaven (Optional)</h3>
+                            <p>When you first start Neovim, Supermaven will prompt you to either:</p>
+                            <ul>
+                                <li>Use the Free Tier: <code>:SupermavenUseFree</code></li>
+                                <li>Activate Pro subscription by following the provided link</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="keybindings" class="section">
+            <div class="container">
+                <h2><i class="fas fa-keyboard"></i> Keybindings</h2>
+                
+                <div class="keybinding-categories">
+                    <div class="category-tabs">
+                        <button class="tab-btn active" data-category="navigation">Navigation</button>
+                        <button class="tab-btn" data-category="editing">Editing</button>
+                        <button class="tab-btn" data-category="ai">AI</button>
+                        <button class="tab-btn" data-category="plugins">Plugins</button>
+                        <button class="tab-btn" data-category="lsp">LSP</button>
+                    </div>
+
+                    <div class="category-content">
+                        <div id="navigation" class="category-panel active">
+                            <div class="keybinding-grid">
+                                <div class="keybinding-item">
+                                    <kbd>&lt;C-h/j/k/l&gt;</kbd>
+                                    <span>Navigate between windows</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;S-h/l&gt;</kbd>
+                                    <span>Navigate between buffers</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>n/N</kbd>
+                                    <span>Search with centered results</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>*/#</kbd>
+                                    <span>Search word under cursor</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="editing" class="category-panel">
+                            <div class="keybinding-grid">
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;w</kbd>
+                                    <span>Quick save</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;q</kbd>
+                                    <span>Quick quit</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;a</kbd>
+                                    <span>Select all text</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;A-j/k&gt;</kbd>
+                                    <span>Move lines up/down</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>jj/jk</kbd>
+                                    <span>Quick escape from insert mode</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;y/p</kbd>
+                                    <span>Yank/paste to system clipboard</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;R</kbd>
+                                    <span>Quick find and replace</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="ai" class="category-panel">
+                            <div class="keybinding-grid">
+                                <div class="keybinding-item">
+                                    <kbd>&lt;Tab&gt;</kbd>
+                                    <span>Accept AI suggestion</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;C-]&gt;</kbd>
+                                    <span>Clear AI suggestion</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;C-l&gt;</kbd>
+                                    <span>Accept word from AI suggestion</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;sa</kbd>
+                                    <span>Start Supermaven</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;ss</kbd>
+                                    <span>Stop Supermaven</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;st</kbd>
+                                    <span>Toggle Supermaven</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="plugins" class="category-panel">
+                            <div class="keybinding-grid">
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;ff</kbd>
+                                    <span>Telescope find files</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;fg</kbd>
+                                    <span>Telescope live grep</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;e</kbd>
+                                    <span>Toggle file explorer</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;tt</kbd>
+                                    <span>Toggle terminal</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="lsp" class="category-panel">
+                            <div class="keybinding-grid">
+                                <div class="keybinding-item">
+                                    <kbd>gd</kbd>
+                                    <span>Go to definition</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>gr</kbd>
+                                    <span>Go to references</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>K</kbd>
+                                    <span>Hover</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;lf</kbd>
+                                    <span>Format</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;rn</kbd>
+                                    <span>Rename</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="plugins" class="section">
+            <div class="container">
+                <h2><i class="fas fa-puzzle-piece"></i> Plugins</h2>
+                
+                <div class="plugins-grid">
+                    <div class="plugin-card">
+                        <div class="plugin-header">
+                            <h3><i class="fas fa-brain"></i> Supermaven</h3>
+                            <span class="plugin-type">AI Completion</span>
+                        </div>
+                        <p>AI-powered code completion with intelligent suggestions.</p>
+                        <div class="plugin-features">
+                            <span class="feature-tag">Free Tier</span>
+                            <span class="feature-tag">Pro Tier</span>
+                            <span class="feature-tag">CMP Integration</span>
+                        </div>
+                        <div class="plugin-commands">
+                            <h4>Commands:</h4>
+                            <ul>
+                                <li><code>:SupermavenStart</code> - Start Supermaven</li>
+                                <li><code>:SupermavenStop</code> - Stop Supermaven</li>
+                                <li><code>:SupermavenToggle</code> - Toggle Supermaven</li>
+                                <li><code>:SupermavenUseFree</code> - Switch to free version</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="plugin-card">
+                        <div class="plugin-header">
+                            <h3><i class="fas fa-search"></i> Telescope</h3>
+                            <span class="plugin-type">Fuzzy Finder</span>
+                        </div>
+                        <p>Powerful fuzzy finder for files, buffers, and more.</p>
+                        <div class="plugin-features">
+                            <span class="feature-tag">File Search</span>
+                            <span class="feature-tag">Live Grep</span>
+                            <span class="feature-tag">LSP Integration</span>
+                        </div>
+                        <div class="plugin-commands">
+                            <h4>Keybindings:</h4>
+                            <ul>
+                                <li><kbd>&lt;leader&gt;ff</kbd> - Find files</li>
+                                <li><kbd>&lt;leader&gt;fg</kbd> - Live grep</li>
+                                <li><kbd>&lt;leader&gt;fb</kbd> - Buffers</li>
+                                <li><kbd>&lt;leader&gt;fh</kbd> - Help tags</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="plugin-card">
+                        <div class="plugin-header">
+                            <h3><i class="fas fa-tree"></i> Treesitter</h3>
+                            <span class="plugin-type">Syntax Highlighting</span>
+                        </div>
+                        <p>Advanced syntax highlighting and code parsing.</p>
+                        <div class="plugin-features">
+                            <span class="feature-tag">Syntax Highlighting</span>
+                            <span class="feature-tag">Code Folding</span>
+                            <span class="feature-tag">Text Objects</span>
+                        </div>
+                        <div class="plugin-commands">
+                            <h4>Keybindings:</h4>
+                            <ul>
+                                <li><kbd>&lt;C-Tab&gt;</kbd> - Node incremental selection</li>
+                                <li><kbd>&lt;leader&gt;as</kbd> - Swap next parameter</li>
+                                <li><kbd>&lt;leader&gt;ts</kbd> - Update parsers</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="plugin-card">
+                        <div class="plugin-header">
+                            <h3><i class="fas fa-folder"></i> NvimTree</h3>
+                            <span class="plugin-type">File Explorer</span>
+                        </div>
+                        <p>File tree explorer with Git integration.</p>
+                        <div class="plugin-features">
+                            <span class="feature-tag">File Explorer</span>
+                            <span class="feature-tag">Git Integration</span>
+                            <span class="feature-tag">Diagnostics</span>
+                        </div>
+                        <div class="plugin-commands">
+                            <h4>Keybindings:</h4>
+                            <ul>
+                                <li><kbd>&lt;leader&gt;e</kbd> - Toggle file explorer</li>
+                                <li><kbd>&lt;leader&gt;o</kbd> - Focus file explorer</li>
+                                <li><kbd>&lt;leader&gt;r</kbd> - Refresh file explorer</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="plugin-card">
+                        <div class="plugin-header">
+                            <h3><i class="fas fa-terminal"></i> ToggleTerm</h3>
+                            <span class="plugin-type">Terminal</span>
+                        </div>
+                        <p>Integrated terminal with multiple layouts.</p>
+                        <div class="plugin-features">
+                            <span class="feature-tag">Floating Terminal</span>
+                            <span class="feature-tag">Multiple Layouts</span>
+                            <span class="feature-tag">Easy Toggle</span>
+                        </div>
+                        <div class="plugin-commands">
+                            <h4>Keybindings:</h4>
+                            <ul>
+                                <li><kbd>&lt;leader&gt;tt</kbd> - Toggle terminal</li>
+                                <li><kbd>&lt;leader&gt;tf</kbd> - Float terminal</li>
+                                <li><kbd>&lt;leader&gt;th</kbd> - Horizontal terminal</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="plugin-card">
+                        <div class="plugin-header">
+                            <h3><i class="fas fa-palette"></i> Kanagawa</h3>
+                            <span class="plugin-type">Colorscheme</span>
+                        </div>
+                        <p>Beautiful Japanese-inspired colorscheme.</p>
+                        <div class="plugin-features">
+                            <span class="feature-tag">Multiple Themes</span>
+                            <span class="feature-tag">Terminal Support</span>
+                            <span class="feature-tag">Customizable</span>
+                        </div>
+                        <div class="plugin-commands">
+                            <h4>Themes:</h4>
+                            <ul>
+                                <li><code>wave</code> - Default theme</li>
+                                <li><code>dragon</code> - Dragon theme</li>
+                                <li><code>lotus</code> - Lotus theme</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="customization" class="section">
+            <div class="container">
+                <h2><i class="fas fa-cog"></i> Customization</h2>
+                
+                <div class="customization-content">
+                    <div class="custom-section">
+                        <h3>Adding Your Own Settings</h3>
+                        <p>Add your custom settings at the end of <code>init.lua</code>:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>init.lua</span>
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            </div>
+                            <pre><code>-- Load core configuration
+require("core").setup()
+
+-- Your custom settings here
+vim.opt.colorcolumn = "80"
+vim.opt.spell = true
+vim.opt.spelllang = "en_us"
+
+print("High-performance Neovim configuration loaded!")</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="custom-section">
+                        <h3>File Type Specific Settings</h3>
+                        <p>Edit <code>lua/core/autocmds.lua</code> to add file type specific settings:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>lua/core/autocmds.lua</span>
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            </div>
+                            <pre><code>-- File type specific settings
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "text", "python", "javascript" },
+  callback = function()
+    if vim.bo.filetype == "markdown" or vim.bo.filetype == "text" then
+      vim.opt_local.wrap = true
+      vim.opt_local.linebreak = true
+      vim.opt_local.textwidth = 80
+    elseif vim.bo.filetype == "python" or vim.bo.filetype == "javascript" then
+      vim.opt_local.tabstop = 4
+      vim.opt_local.shiftwidth = 4
+    end
+  end
+})</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="custom-section">
+                        <h3>Adding New Plugins</h3>
+                        <p>Add new plugins to <code>lua/plugins/init.lua</code>:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>lua/plugins/init.lua</span>
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            </div>
+                            <pre><code>M.plugins = {
+  -- Your existing plugins...
+  
+  -- New plugin example
+  {
+    "username/plugin-name",
+    event = "BufRead",
+    config = function()
+      require("plugin-name").setup({
+        -- Plugin configuration
+      })
+    end,
+  },
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="troubleshooting" class="section">
+            <div class="container">
+                <h2><i class="fas fa-tools"></i> Troubleshooting</h2>
+                
+                <div class="troubleshooting-grid">
+                    <div class="trouble-card">
+                        <h3><i class="fas fa-clock"></i> Slow Startup</h3>
+                        <ul>
+                            <li>Check if you have other Neovim configurations in <code>~/.config/nvim/</code></li>
+                            <li>Ensure no other init files are being loaded</li>
+                            <li>Use <code>nvim --startuptime startup.log</code> to profile startup time</li>
+                        </ul>
+                    </div>
+
+                    <div class="trouble-card">
+                        <h3><i class="fas fa-tachometer-alt"></i> Performance Issues</h3>
+                        <ul>
+                            <li>Monitor system resources while using Neovim</li>
+                            <li>Check if any external processes are affecting performance</li>
+                            <li>Consider using <code>nvim --clean</code> to test without any configuration</li>
+                        </ul>
+                    </div>
+
+                    <div class="trouble-card">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Plugin Issues</h3>
+                        <ul>
+                            <li>Run <code>:Lazy sync</code> to install/update plugins</li>
+                            <li>Check <code>:Lazy log</code> for error messages</li>
+                            <li>Ensure all dependencies are installed</li>
+                        </ul>
+                    </div>
+
+                    <div class="trouble-card">
+                        <h3><i class="fas fa-brain"></i> Supermaven Issues</h3>
+                        <ul>
+                            <li>Run <code>:SupermavenShowLog</code> to view logs</li>
+                            <li>Check your internet connection</li>
+                            <li>Verify your Supermaven account is active</li>
+                            <li>Try <code>:SupermavenRestart</code> to restart the service</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

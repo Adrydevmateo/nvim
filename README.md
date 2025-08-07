@@ -144,6 +144,17 @@ The following conflicts have been resolved to ensure smooth operation:
 - `[d` - Previous diagnostic
 - `]d` - Next diagnostic
 
+## 📚 Documentation
+
+For the complete interactive documentation, open `docs/index.html` in your browser. The documentation includes:
+
+- **Interactive Keybinding Reference** with search functionality
+- **Detailed Plugin Documentation** with usage examples
+- **Step-by-step Installation Guide**
+- **Customization Examples**
+- **Troubleshooting Guide**
+- **Mobile-responsive Design**
+
 ## Installation
 
 1. Clone or copy this configuration to your Neovim config directory:
@@ -197,6 +208,11 @@ nvim/
 │   └── plugins/
 │       ├── init.lua      # Plugin specifications (includes Supermaven)
 │       └── lazy.lua      # Lazy.nvim configuration
+├── docs/                 # Interactive documentation
+│   ├── index.html        # Main documentation page
+│   ├── css/style.css     # Documentation styles
+│   ├── js/script.js      # Documentation functionality
+│   └── README.md         # Documentation guide
 └── README.md
 ```
 
