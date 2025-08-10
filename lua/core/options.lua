@@ -6,7 +6,7 @@ local M = {}
 function M.setup()
   -- Core editor settings
   vim.opt.number = true -- Show line numbers
-  vim.opt.relativenumber = true -- Show relative line numbers
+  vim.opt.relativenumber = false -- Show relative line numbers
   vim.opt.scrolloff = 8 -- Keep 8 lines above/below cursor
   vim.opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
   vim.opt.wrap = false -- No line wrapping

@@ -49,7 +49,7 @@ function M.setup()
   vim.opt.ttimeout = true -- Time out on key codes
   vim.opt.ttimeoutlen = 50 -- Time out on key codes after 50ms
   vim.opt.termguicolors = true -- Use true colors (faster than 256 colors)
-  vim.opt.guicursor = "" -- Use terminal cursor (faster than GUI cursor)
+  -- vim.opt.guicursor = "" -- Use terminal cursor (faster than GUI cursor)
   vim.opt.scrollback = 1000 -- Limit scrollback in terminal
 
   -- Syntax highlighting optimizations
