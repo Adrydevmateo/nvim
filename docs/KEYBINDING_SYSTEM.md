@@ -67,167 +67,74 @@ end, { "i", "s" })
 
 ## 📋 Complete Keybinding Reference
 
-### **Core Navigation**
-```lua
--- Window Navigation
-<C-h/j/k/l>     -- Navigate between windows
-<S-l/h>         -- Navigate between buffers
+### **Navigation & Movement**
+- **Window Navigation**: `<C-h/j/k/l>` - Navigate between windows
+- **Buffer Navigation**: `<S-h/l>` - Navigate between buffers
+- **Search Navigation**: `n/N` - Search with centered results
+- **Word Search**: `*/#` - Search word under cursor
 
--- Search
-n/N             -- Search with centered results
-*/#             -- Search word under cursor
+### **File Operations**
+- **Save/Quit**: `<leader>w` - Quick save, `<leader>q` - Quick quit, `<leader>Q` - Force quit
+- **File Explorer**: `<leader>e` - Toggle NvimTree, `<leader>o` - Focus NvimTree, `<leader>rf` - Refresh NvimTree, `<leader>n` - Find current file in tree
 
--- File Operations
-<leader>w       -- Quick save
-<leader>q       -- Quick quit
-<leader>Q       -- Force quit
-<leader>R       -- Quick find and replace
-```
+### **Text Editing**
+- **Quick Escape**: `jj/jk` - Quick escape from insert mode
+- **Line Movement**: `<A-j/k>` - Move lines up/down
+- **Select All**: `<leader>a` - Select all text
+- **Clipboard**: `<leader>y/p` - Yank/paste to system clipboard
+- **Find/Replace**: `<leader>R` - Quick find and replace
+- **Search**: `<leader>h` - Toggle search highlighting
 
 ### **AI Completion (Supermaven)**
-```lua
--- AI Suggestion Management
-<C-Tab>         -- Accept AI suggestion (conflict-free)
-<C-]>           -- Clear AI suggestion
-<C-l>           -- Accept word from AI suggestion (conflict-free)
+- **Accept Suggestion**: `<C-Tab>` - Accept AI suggestion
+- **Clear Suggestion**: `<C-]>` - Clear AI suggestion
+- **Accept Word**: `<C-l>` - Accept word from AI suggestion
+- **Control**: `<leader>sa` - Start, `<leader>ss` - Stop, `<leader>sr` - Restart, `<leader>st` - Toggle
+- **Status**: `<leader>sS` - Show status, `<leader>sf` - Switch to free, `<leader>sp` - Switch to pro
+- **Logs**: `<leader>sl` - Show logs, `<leader>sc` - Clear logs
 
--- Supermaven Control
-<leader>sa      -- Start Supermaven
-<leader>ss      -- Stop Supermaven
-<leader>sr      -- Restart Supermaven
-<leader>st      -- Toggle Supermaven
-<leader>sS      -- Show Supermaven status
-<leader>sf      -- Switch to free version
-<leader>sp      -- Switch to pro version
-<leader>sl      -- Show Supermaven logs
-<leader>sc      -- Clear Supermaven logs
-```
+### **Completion Engine (nvim-cmp)**
+- **Navigation**: `<Tab>` - Next item/snippet/AI, `<S-Tab>` - Previous item/snippet
+- **Selection**: `<C-n/p>` - Next/Previous completion item
+- **Control**: `<C-Space>` - Trigger completion, `<C-e>` - Close completion
+- **Confirm**: `<CR>` - Confirm completion
+- **Docs**: `<C-d/f>` - Scroll documentation up/down
 
-### **LSP and Code Intelligence**
-```lua
--- Navigation
-gd              -- Go to definition
-gr              -- Go to references
-gi              -- Go to implementation
-K               -- Hover documentation
+### **Treesitter Text Objects**
+- **Incremental Selection**: `<CR>` - Init/scope, `<C-TAB>` - Node increment, `<S-TAB>` - Node decrement
+- **Parameter Selection**: `aa/ia` - Parameter outer/inner
+- **Function Selection**: `af/if` - Function outer/inner
+- **Class Selection**: `ac/ic` - Class outer/inner
+- **Navigation**: `]m/]M` - Next function start/end, `]]/[[]` - Next/Previous class start
+- **Parameter Swap**: `<leader>as/aS` - Swap next/previous parameter
 
--- Actions
-<leader>rn      -- Rename symbol
-<leader>ca      -- Code actions
-<leader>lf      -- Format document (conflict-free)
-<leader>d       -- Show diagnostics
+### **LSP Integration**
+- **Navigation**: `gd` - Go to definition, `gr` - Go to references, `gi` - Go to implementation
+- **Documentation**: `K` - Hover documentation
+- **Actions**: `<leader>rn` - Rename symbol, `<leader>ca` - Code actions, `<leader>lf` - Format document
+- **Diagnostics**: `<leader>d` - Show diagnostics, `[d/]d` - Previous/Next diagnostic
+- **Control**: `<leader>li` - LSP info, `<leader>lr` - LSP restart, `<leader>ls` - LSP start, `<leader>lS` - LSP stop
 
--- Diagnostics
-[d              -- Previous diagnostic
-]d              -- Next diagnostic
+### **Telescope Fuzzy Finder**
+- **Files**: `<leader>ff` - Find files, `<leader>fg` - Live grep, `<leader>fb` - Buffers
+- **Navigation**: `<leader>fo` - Old files, `<leader>fh` - Help tags, `<leader>fc` - Colorscheme picker
+- **LSP Integration**: `<leader>fr` - LSP references, `<leader>fi` - LSP implementations, `<leader>fS` - LSP document symbols, `<leader>fw` - LSP workspace symbols, `<leader>fd` - LSP diagnostics
+- **Utilities**: `<leader>fk` - Keymaps, `<leader>fs` - Grep string
 
--- LSP Management
-<leader>li      -- LSP info
-<leader>lr      -- LSP restart
-<leader>ls      -- LSP start
-<leader>lS      -- LSP stop
-```
+### **Terminal Integration**
+- **Toggle**: `<leader>tt` - Toggle terminal, `<leader>tf` - Float terminal, `<leader>th` - Horizontal terminal, `<leader>tv` - Vertical terminal
+- **Exit**: `<Esc>`, `jj`, `jk` - Exit terminal mode
 
-### **Fuzzy Finding (Telescope)**
-```lua
--- File Operations
-<leader>ff      -- Find files
-<leader>fg      -- Live grep
-<leader>fb      -- Buffers
-<leader>fh      -- Help tags
-<leader>fo      -- Old files
-<leader>fc      -- Colorscheme
-<leader>fk      -- Keymaps
-<leader>fs      -- Grep string
-<leader>fd      -- Diagnostics
+### **Performance & Utilities**
+- **Treesitter**: `<leader>ts` - Update parsers, `<leader>ti` - Show installed parsers
+- **Syntax**: `<leader>ps` - Sync syntax from start, `<leader>pc` - Clear syntax highlighting
+- **System**: `<leader>pr` - Force redraw, `<leader>pm` - Show messages, `<leader>pl` - Stop LSP clients
 
--- LSP Operations
-<leader>fr      -- LSP references
-<leader>fi      -- LSP implementations
-<leader>fS      -- LSP document symbols
-<leader>fw      -- LSP workspace symbols
-```
-
-### **File Management (NvimTree)**
-```lua
-<leader>e       -- Toggle file explorer
-<leader>o       -- Focus file explorer
-<leader>rf      -- Refresh file explorer (conflict-free)
-<leader>n       -- Find current file in tree
-```
-
-### **Terminal Management**
-```lua
-<leader>tt      -- Toggle terminal
-<leader>tf      -- Toggle float terminal
-<leader>th      -- Toggle horizontal terminal
-<leader>tv      -- Toggle vertical terminal
-
--- Terminal Mode
-<Esc>           -- Exit terminal mode
-jj              -- Exit terminal mode
-jk              -- Exit terminal mode
-```
-
-### **Syntax Navigation (Treesitter)**
-```lua
--- Incremental Selection
-<CR>            -- Init selection
-<C-TAB>         -- Node incremental (conflict-free)
-<S-TAB>         -- Node decremental (conflict-free)
-
--- Text Objects
-aa              -- Parameter outer
-ia              -- Parameter inner
-af              -- Function outer
-if              -- Function inner
-ac              -- Class outer
-ic              -- Class inner
-
--- Movement
-]m              -- Next function start
-]]              -- Next class start
-]M              -- Next function end
-][              -- Next class end
-[m              -- Previous function start
-[[              -- Previous class start
-[M              -- Previous function end
-[]              -- Previous class end
-
--- Swap
-<leader>as      -- Swap next parameter (conflict-free)
-<leader>aS      -- Swap previous parameter (conflict-free)
-```
-
-### **Completion and Snippets**
-```lua
--- Navigation
-<C-p>           -- Previous item
-<C-n>           -- Next item
-<C-d>           -- Scroll docs up
-<C-f>           -- Scroll docs down
-
--- Actions
-<C-Space>       -- Complete
-<C-e>           -- Close
-<CR>            -- Confirm
-<Tab>           -- Next item/expand snippet (with fallback)
-<S-Tab>         -- Previous item/jump snippet
-```
-
-### **Performance and Utilities**
-```lua
--- Syntax
-<leader>ps      -- Sync syntax from start
-<leader>pc      -- Clear syntax highlighting
-<leader>pr      -- Force redraw
-<leader>pm      -- Show messages
-<leader>pl      -- Stop LSP clients
-
--- Treesitter
-<leader>ts      -- Update parsers
-<leader>ti      -- Show installed parsers
-```
+### **Mode-Specific Mappings**
+- **Normal Mode**: All navigation and editing keybindings
+- **Insert Mode**: `jj/jk` for escape, `<A-j/k>` for line movement
+- **Visual Mode**: `<A-j/k>` for line movement, `<leader>y` for clipboard
+- **Terminal Mode**: `<Esc>`, `jj`, `jk` for exit
 
 ## 🧪 Testing Your Keybindings
 

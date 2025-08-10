@@ -133,7 +133,15 @@ Modify `lua/core/keymaps.lua` to add your own keybindings. The system is designe
 ## 📚 Documentation
 
 - **Interactive Documentation**: Open `/docs/index.html` in your browser for a complete interactive guide
-- **Keybinding System**: See `/docs/KEYBINDING_SYSTEM.md` for detailed keybinding documentation
+- **Keybinding System**: See `/docs/KEYBINDING_SYSTEM.md` for comprehensive keybinding documentation
+- **Complete Keybinding Reference**: All keybindings organized by category with detailed explanations
+
+### **What's Documented**
+- **100+ Keybindings**: Complete reference with conflict-free design
+- **8 Categories**: Navigation, Editing, AI, Completion, Treesitter, LSP, Plugins, Terminal
+- **Interactive Guide**: Searchable, tabbed interface with examples
+- **Conflict Resolution**: Detailed explanation of how conflicts were resolved
+- **Plugin Integration**: How all plugins work together harmoniously
 
 ## 🐛 Troubleshooting
 

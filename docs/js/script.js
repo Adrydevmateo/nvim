@@ -128,160 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Search functionality for keybindings
-    function createSearchBox() {
-        const keybindingSection = document.getElementById('keybindings');
-        if (!keybindingSection) return;
-
-        const searchContainer = document.createElement('div');
-        searchContainer.className = 'search-container';
-        searchContainer.innerHTML = `
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="keybinding-search" placeholder="Search keybindings...">
-                <button id="clear-search" class="clear-btn">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-        `;
-
-        const categoryContent = keybindingSection.querySelector('.category-content');
-        categoryContent.insertBefore(searchContainer, categoryContent.firstChild);
-
-        // Add search styles
-        const style = document.createElement('style');
-        style.textContent = `
-            .search-container {
-                margin-bottom: 2rem;
-            }
-            .search-box {
-                position: relative;
-                max-width: 400px;
-            }
-            .search-box i {
-                position: absolute;
-                left: 1rem;
-                top: 50%;
-                transform: translateY(-50%);
-                color: var(--text-secondary);
-            }
-            .search-box input {
-                width: 100%;
-                padding: 0.75rem 1rem 0.75rem 2.5rem;
-                background-color: var(--surface-color);
-                border: 1px solid var(--border-color);
-                border-radius: var(--border-radius);
-                color: var(--text-primary);
-                font-size: 0.9rem;
-            }
-            .search-box input:focus {
-                outline: none;
-                border-color: var(--primary-color);
-            }
-            .clear-btn {
-                position: absolute;
-                right: 0.5rem;
-                top: 50%;
-                transform: translateY(-50%);
-                background: none;
-                border: none;
-                color: var(--text-secondary);
-                cursor: pointer;
-                padding: 0.25rem;
-                border-radius: 4px;
-                display: none;
-            }
-            .clear-btn:hover {
-                color: var(--primary-color);
-            }
-            .clear-btn.visible {
-                display: block;
-            }
-            .keybinding-item.hidden {
-                display: none;
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Search functionality
-        const searchInput = document.getElementById('keybinding-search');
-        const clearBtn = document.getElementById('clear-search');
-        const keybindingItems = document.querySelectorAll('.keybinding-item');
-
-        function performSearch() {
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            let hasResults = false;
-
-            keybindingItems.forEach(item => {
-                const keybinding = item.querySelector('kbd').textContent.toLowerCase();
-                const description = item.querySelector('span').textContent.toLowerCase();
-                
-                if (keybinding.includes(searchTerm) || description.includes(searchTerm)) {
-                    item.classList.remove('hidden');
-                    hasResults = true;
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
-
-            // Show/hide clear button
-            if (searchTerm) {
-                clearBtn.classList.add('visible');
-            } else {
-                clearBtn.classList.remove('visible');
-            }
-
-            // Show "no results" message if needed
-            showNoResultsMessage(!hasResults && searchTerm);
-        }
-
-        function showNoResultsMessage(show) {
-            let noResults = document.getElementById('no-results-message');
-            
-            if (show && !noResults) {
-                noResults = document.createElement('div');
-                noResults.id = 'no-results-message';
-                noResults.innerHTML = `
-                    <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
-                        <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
-                        <p>No keybindings found matching "${searchInput.value}"</p>
-                    </div>
-                `;
-                
-                const activePanel = document.querySelector('.category-panel.active');
-                if (activePanel) {
-                    activePanel.appendChild(noResults);
-                }
-            } else if (!show && noResults) {
-                noResults.remove();
-            }
-        }
-
-        searchInput.addEventListener('input', performSearch);
-        
-        clearBtn.addEventListener('click', function() {
-            searchInput.value = '';
-            performSearch();
-            searchInput.focus();
-        });
-
-        // Keyboard shortcuts
-        searchInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                searchInput.value = '';
-                performSearch();
-                searchInput.blur();
-            }
-        });
-    }
-
-    // Initialize search when keybindings section is shown
-    const keybindingLink = document.querySelector('a[href="#keybindings"]');
-    if (keybindingLink) {
-        keybindingLink.addEventListener('click', function() {
-            setTimeout(createSearchBox, 100);
-        });
-    }
+    // Keybinding search removed per request; UI now relies on category tabs only
 
     // Theme toggle functionality
     function createThemeToggle() {
@@ -433,41 +280,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     createMobileMenu();
 
-    // Keyboard shortcuts for navigation
-    document.addEventListener('keydown', function(e) {
-        // Only handle shortcuts when not typing in input fields
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-            return;
-        }
-
-        // Ctrl/Cmd + number keys for navigation
-        if ((e.ctrlKey || e.metaKey) && e.key >= '1' && e.key <= '8') {
-            e.preventDefault();
-            const sectionMap = {
-                '1': 'overview',
-                '2': 'features',
-                '3': 'installation',
-                '4': 'keybinding-system',
-                '5': 'keybindings',
-                '6': 'plugins',
-                '7': 'customization',
-                '8': 'troubleshooting'
-            };
-            
-            const sectionId = sectionMap[e.key];
-            if (sectionId) {
-                showSection(sectionId);
-                history.pushState(null, null, `#${sectionId}`);
-            }
-        }
-
-        // Escape key to close mobile menu
-        if (e.key === 'Escape' && window.innerWidth <= 768) {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.classList.remove('open');
-        }
-    });
-
     // Intersection Observer for animations
     const observerOptions = {
         threshold: 0.1,
@@ -496,3 +308,108 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Keyboard shortcuts: Ctrl/Cmd + 1-8 for navigation');
     console.log('Theme: Dark/Light mode toggle available in sidebar');
 });
+
+// Tab functionality for keybinding categories
+document.addEventListener('DOMContentLoaded', function() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const categoryPanels = document.querySelectorAll('.category-panel');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetCategory = btn.getAttribute('data-category');
+            
+            // Remove active class from all tabs and panels
+            tabBtns.forEach(b => b.classList.remove('active'));
+            categoryPanels.forEach(panel => panel.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding panel
+            btn.classList.add('active');
+            document.getElementById(targetCategory).classList.add('active');
+        });
+    });
+});
+
+// Mobile menu functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileMenuClose = document.querySelector('.mobile-menu-close');
+
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        if (mobileMenuClose) {
+            mobileMenuClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        }
+    }
+});
+
+// (search removed)
+
+// Smooth scrolling for navigation links
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+});
+
+// Keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+    // Ctrl/Cmd + number keys for navigation
+    if ((e.ctrlKey || e.metaKey) && e.key >= '1' && e.key <= '8') {
+        e.preventDefault();
+        const sectionMap = {
+            '1': 'overview',
+            '2': 'features',
+            '3': 'installation',
+            '4': 'keybinding-system',
+            '5': 'keybindings',
+            '6': 'plugins',
+            '7': 'customization',
+            '8': 'troubleshooting'
+        };
+        
+        const targetSection = sectionMap[e.key];
+        if (targetSection) {
+            const section = document.getElementById(targetSection);
+            if (section) {
+                section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+    }
+    
+    // Escape key to close mobile menu
+    if (e.key === 'Escape') {
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        if (mobileMenu && mobileMenu.classList.contains('active')) {
+            mobileMenu.classList.remove('active');
+        }
+    }
+});
+
+// Console log for keyboard shortcuts
+console.log('Keyboard shortcuts: Ctrl/Cmd + 1-8 for navigation');
+console.log('Escape: Close mobile menu');
+console.log('Tab: Navigate through interactive elements');
+console.log('Enter: Activate buttons and links');

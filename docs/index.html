@@ -248,13 +248,18 @@ cp -r . ~/.config/nvim/</code></pre>
             <div class="container">
                 <h2><i class="fas fa-keyboard"></i> Keybindings</h2>
                 
+                
+                
                 <div class="keybinding-categories">
                     <div class="category-tabs">
                         <button class="tab-btn active" data-category="navigation">Navigation</button>
                         <button class="tab-btn" data-category="editing">Editing</button>
                         <button class="tab-btn" data-category="ai">AI</button>
+                        <button class="tab-btn" data-category="completion">Completion</button>
+                        <button class="tab-btn" data-category="treesitter">Treesitter</button>
                         <button class="tab-btn" data-category="plugin-keys">Plugins</button>
                         <button class="tab-btn" data-category="lsp">LSP</button>
+                        <button class="tab-btn" data-category="terminal">Terminal</button>
                     </div>
 
                     <div class="category-content">
@@ -276,6 +281,38 @@ cp -r . ~/.config/nvim/</code></pre>
                                     <kbd>*/#</kbd>
                                     <span>Search word under cursor</span>
                                 </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;ff</kbd>
+                                    <span>Find files (Telescope)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;fg</kbd>
+                                    <span>Live grep (Telescope)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;fb</kbd>
+                                    <span>Find buffers (Telescope)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;fo</kbd>
+                                    <span>Find old files (Telescope)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;fh</kbd>
+                                    <span>Help tags (Telescope)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;fc</kbd>
+                                    <span>Colorscheme picker (Telescope)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;fk</kbd>
+                                    <span>Keymaps (Telescope)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;fs</kbd>
+                                    <span>Grep string (Telescope)</span>
+                                </div>
                             </div>
                         </div>
 
@@ -290,6 +327,10 @@ cp -r . ~/.config/nvim/</code></pre>
                                     <span>Quick quit</span>
                                 </div>
                                 <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;Q</kbd>
+                                    <span>Force quit</span>
+                                </div>
+                                <div class="keybinding-item">
                                     <kbd>&lt;leader&gt;a</kbd>
                                     <span>Select all text</span>
                                 </div>
@@ -302,12 +343,40 @@ cp -r . ~/.config/nvim/</code></pre>
                                     <span>Quick escape from insert mode</span>
                                 </div>
                                 <div class="keybinding-item">
-                                    <kbd>&lt;leader&gt;y/p</kbd>
-                                    <span>Yank/paste to system clipboard</span>
+                                    <kbd>&lt;leader&gt;y</kbd>
+                                    <span>Yank to system clipboard</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;Y</kbd>
+                                    <span>Yank to end of line (system clipboard)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;p</kbd>
+                                    <span>Paste after from system clipboard</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;P</kbd>
+                                    <span>Paste before from system clipboard</span>
                                 </div>
                                 <div class="keybinding-item">
                                     <kbd>&lt;leader&gt;R</kbd>
                                     <span>Quick find and replace</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;h</kbd>
+                                    <span>Toggle search highlighting</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;lf</kbd>
+                                    <span>Format document (LSP)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;rn</kbd>
+                                    <span>Rename symbol (LSP)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;ca</kbd>
+                                    <span>Code actions (LSP)</span>
                                 </div>
                             </div>
                         </div>
@@ -335,8 +404,32 @@ cp -r . ~/.config/nvim/</code></pre>
                                     <span>Stop Supermaven</span>
                                 </div>
                                 <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;sr</kbd>
+                                    <span>Restart Supermaven</span>
+                                </div>
+                                <div class="keybinding-item">
                                     <kbd>&lt;leader&gt;st</kbd>
                                     <span>Toggle Supermaven</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;sS</kbd>
+                                    <span>Show Supermaven status</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;sf</kbd>
+                                    <span>Switch to free version</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;sp</kbd>
+                                    <span>Switch to pro version</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;sl</kbd>
+                                    <span>Show Supermaven logs</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;sc</kbd>
+                                    <span>Clear Supermaven logs</span>
                                 </div>
                             </div>
                         </div>
@@ -344,20 +437,64 @@ cp -r . ~/.config/nvim/</code></pre>
                         <div id="plugin-keys" class="category-panel">
                             <div class="keybinding-grid">
                                 <div class="keybinding-item">
-                                    <kbd>&lt;leader&gt;ff</kbd>
-                                    <span>Telescope find files</span>
-                                </div>
-                                <div class="keybinding-item">
-                                    <kbd>&lt;leader&gt;fg</kbd>
-                                    <span>Telescope live grep</span>
-                                </div>
-                                <div class="keybinding-item">
                                     <kbd>&lt;leader&gt;e</kbd>
-                                    <span>Toggle file explorer</span>
+                                    <span>Toggle file explorer (NvimTree)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;o</kbd>
+                                    <span>Focus file explorer (NvimTree)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;rf</kbd>
+                                    <span>Refresh file explorer (NvimTree)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;n</kbd>
+                                    <span>Find current file in tree (NvimTree)</span>
                                 </div>
                                 <div class="keybinding-item">
                                     <kbd>&lt;leader&gt;tt</kbd>
                                     <span>Toggle terminal</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;tf</kbd>
+                                    <span>Toggle float terminal</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;th</kbd>
+                                    <span>Toggle horizontal terminal</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;tv</kbd>
+                                    <span>Toggle vertical terminal</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;ts</kbd>
+                                    <span>Update Treesitter parsers</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;ti</kbd>
+                                    <span>Show installed Treesitter parsers</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;ps</kbd>
+                                    <span>Sync syntax from start</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;pc</kbd>
+                                    <span>Clear syntax highlighting</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;pr</kbd>
+                                    <span>Force redraw</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;pm</kbd>
+                                    <span>Show messages</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;pl</kbd>
+                                    <span>Stop LSP clients</span>
                                 </div>
                             </div>
                         </div>
@@ -373,16 +510,219 @@ cp -r . ~/.config/nvim/</code></pre>
                                     <span>Go to references</span>
                                 </div>
                                 <div class="keybinding-item">
+                                    <kbd>gi</kbd>
+                                    <span>Go to implementation</span>
+                                </div>
+                                <div class="keybinding-item">
                                     <kbd>K</kbd>
-                                    <span>Hover</span>
+                                    <span>Hover documentation</span>
                                 </div>
                                 <div class="keybinding-item">
-                                    <kbd>&lt;leader&gt;lf</kbd>
-                                    <span>Format</span>
+                                    <kbd>&lt;leader&gt;d</kbd>
+                                    <span>Show diagnostics</span>
                                 </div>
                                 <div class="keybinding-item">
-                                    <kbd>&lt;leader&gt;rn</kbd>
-                                    <span>Rename</span>
+                                    <kbd>[d</kbd>
+                                    <span>Previous diagnostic</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>]d</kbd>
+                                    <span>Next diagnostic</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;li</kbd>
+                                    <span>LSP info</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;lr</kbd>
+                                    <span>LSP restart</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;ls</kbd>
+                                    <span>LSP start</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;lS</kbd>
+                                    <span>LSP stop</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;fr</kbd>
+                                    <span>LSP references (Telescope)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;fi</kbd>
+                                    <span>LSP implementations (Telescope)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;fS</kbd>
+                                    <span>LSP document symbols (Telescope)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;fw</kbd>
+                                    <span>LSP workspace symbols (Telescope)</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;fd</kbd>
+                                    <span>LSP diagnostics (Telescope)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="completion" class="category-panel">
+                            <div class="keybinding-grid">
+                                <div class="keybinding-item">
+                                    <kbd>&lt;Tab&gt;</kbd>
+                                    <span>Next completion item / Expand snippet / AI suggestion</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;S-Tab&gt;</kbd>
+                                    <span>Previous completion item / Jump snippet</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;C-n&gt;</kbd>
+                                    <span>Next completion item</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;C-p&gt;</kbd>
+                                    <span>Previous completion item</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;C-Space&gt;</kbd>
+                                    <span>Trigger completion</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;C-e&gt;</kbd>
+                                    <span>Close completion</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;CR&gt;</kbd>
+                                    <span>Confirm completion</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;C-d&gt;</kbd>
+                                    <span>Scroll docs up</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;C-f&gt;</kbd>
+                                    <span>Scroll docs down</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="treesitter" class="category-panel">
+                            <div class="keybinding-grid">
+                                <div class="keybinding-item">
+                                    <kbd>&lt;CR&gt;</kbd>
+                                    <span>Init/scope incremental selection</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;C-TAB&gt;</kbd>
+                                    <span>Node incremental selection</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;S-TAB&gt;</kbd>
+                                    <span>Node decremental selection</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>aa</kbd>
+                                    <span>Select parameter outer</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>ia</kbd>
+                                    <span>Select parameter inner</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>af</kbd>
+                                    <span>Select function outer</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>if</kbd>
+                                    <span>Select function inner</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>ac</kbd>
+                                    <span>Select class outer</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>ic</kbd>
+                                    <span>Select class inner</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>]m</kbd>
+                                    <span>Next function start</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>]M</kbd>
+                                    <span>Next function end</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>]]</kbd>
+                                    <span>Next class start</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>][</kbd>
+                                    <span>Next class end</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>[m</kbd>
+                                    <span>Previous function start</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>[M</kbd>
+                                    <span>Previous function end</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>[[</kbd>
+                                    <span>Previous class start</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>[]</kbd>
+                                    <span>Previous class end</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;as</kbd>
+                                    <span>Swap next parameter</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;aS</kbd>
+                                    <span>Swap previous parameter</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="terminal" class="category-panel">
+                            <div class="keybinding-grid">
+                                <div class="keybinding-item">
+                                    <kbd>&lt;Esc&gt;</kbd>
+                                    <span>Exit terminal mode</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>jj</kbd>
+                                    <span>Exit terminal mode</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>jk</kbd>
+                                    <span>Exit terminal mode</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;tt</kbd>
+                                    <span>Toggle terminal</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;tf</kbd>
+                                    <span>Toggle float terminal</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;th</kbd>
+                                    <span>Toggle horizontal terminal</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;leader&gt;tv</kbd>
+                                    <span>Toggle vertical terminal</span>
+                                </div>
+                                <div class="keybinding-item">
+                                    <kbd>&lt;C-\\&gt;</kbd>
+                                    <span>Open terminal (ToggleTerm)</span>
                                 </div>
                             </div>
                         </div>
@@ -434,8 +774,17 @@ cp -r . ~/.config/nvim/</code></pre>
                             <ul>
                                 <li><kbd>&lt;leader&gt;ff</kbd> - Find files</li>
                                 <li><kbd>&lt;leader&gt;fg</kbd> - Live grep</li>
+                                <li><kbd>&lt;leader&gt;fs</kbd> - Grep string</li>
                                 <li><kbd>&lt;leader&gt;fb</kbd> - Buffers</li>
+                                <li><kbd>&lt;leader&gt;fo</kbd> - Old files</li>
                                 <li><kbd>&lt;leader&gt;fh</kbd> - Help tags</li>
+                                <li><kbd>&lt;leader&gt;fc</kbd> - Colorschemes</li>
+                                <li><kbd>&lt;leader&gt;fk</kbd> - Keymaps</li>
+                                <li><kbd>&lt;leader&gt;fd</kbd> - Diagnostics</li>
+                                <li><kbd>&lt;leader&gt;fr</kbd> - LSP references</li>
+                                <li><kbd>&lt;leader&gt;fi</kbd> - LSP implementations</li>
+                                <li><kbd>&lt;leader&gt;fS</kbd> - LSP document symbols</li>
+                                <li><kbd>&lt;leader&gt;fw</kbd> - LSP workspace symbols</li>
                             </ul>
                         </div>
                     </div>
@@ -477,7 +826,8 @@ cp -r . ~/.config/nvim/</code></pre>
                             <ul>
                                 <li><kbd>&lt;leader&gt;e</kbd> - Toggle file explorer</li>
                                 <li><kbd>&lt;leader&gt;o</kbd> - Focus file explorer</li>
-                                <li><kbd>&lt;leader&gt;r</kbd> - Refresh file explorer</li>
+                                <li><kbd>&lt;leader&gt;rf</kbd> - Refresh file explorer</li>
+                                <li><kbd>&lt;leader&gt;n</kbd> - Find current file in tree</li>
                             </ul>
                         </div>
                     </div>
@@ -499,6 +849,7 @@ cp -r . ~/.config/nvim/</code></pre>
                                 <li><kbd>&lt;leader&gt;tt</kbd> - Toggle terminal</li>
                                 <li><kbd>&lt;leader&gt;tf</kbd> - Float terminal</li>
                                 <li><kbd>&lt;leader&gt;th</kbd> - Horizontal terminal</li>
+                                <li><kbd>&lt;C-\\&gt;</kbd> - Open terminal</li>
                             </ul>
                         </div>
                     </div>

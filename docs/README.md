@@ -2,44 +2,22 @@
 
 This directory contains the complete documentation for the Neovim Configuration.
 
-## 📁 Directory Structure
+## 📚 Documentation
 
-```
-docs/
-├── index.html          # Main documentation page
-├── css/
-│   └── style.css       # Styles for the documentation
-├── js/
-│   └── script.js       # JavaScript functionality
-├── images/             # Images and assets (if any)
-└── README.md           # This file
-```
+- **Interactive Documentation**: Open `/docs/index.html` in your browser for a complete interactive guide
+- **Keybinding System**: See `/docs/KEYBINDING_SYSTEM.md` for comprehensive keybinding documentation
+- **Complete Keybinding Reference**: All keybindings organized by category with detailed explanations
 
-## 🚀 Features
-
-### **Interactive Documentation**
-- **Single Page Application**: Smooth navigation without page reloads
-- **Responsive Design**: Works perfectly on desktop, tablet, and mobile
-- **Dark/Light Theme**: Toggle between themes with persistent preference
-- **Search Functionality**: Search through keybindings with real-time filtering
-- **Copy Code**: One-click copy for all code examples
-- **Keyboard Shortcuts**: Navigate with Ctrl/Cmd + 1-7
-
-### **Content Sections**
-1. **Overview**: Introduction and key statistics
-2. **Features**: Detailed feature breakdown
-3. **Installation**: Step-by-step installation guide
-4. **Keybindings**: Complete keybinding reference with search
-5. **Plugins**: Detailed plugin documentation
-6. **Customization**: How to customize the configuration
-7. **Troubleshooting**: Common issues and solutions
-
-### **Interactive Elements**
-- **Tabbed Keybindings**: Organized by category (Navigation, Editing, AI, Plugins, LSP)
-- **Plugin Cards**: Detailed information about each plugin
-- **Code Blocks**: Syntax-highlighted with copy functionality
-- **Animated Elements**: Smooth animations and transitions
-- **Mobile Menu**: Responsive navigation for mobile devices
+### **Keybinding Categories Available**
+- **Navigation & Movement**: Window navigation, buffer switching, search
+- **Text Editing**: Quick escape, line movement, clipboard operations
+- **AI Completion**: Supermaven integration with conflict-free keybindings
+- **Completion Engine**: nvim-cmp with intelligent fallback logic
+- **Treesitter**: Text objects, incremental selection, parameter swapping
+- **LSP Integration**: Code navigation, diagnostics, and actions
+- **Telescope**: Fuzzy finding for files, buffers, and LSP operations
+- **Terminal Integration**: Multiple terminal types and exit modes
+- **Performance & Utilities**: Syntax management and system controls
 
 ## 🎯 Keybinding System
 
