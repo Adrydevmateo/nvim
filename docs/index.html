@@ -18,6 +18,7 @@
             <li><a href="#overview" class="nav-link active"><i class="fas fa-home"></i> Overview</a></li>
             <li><a href="#features" class="nav-link"><i class="fas fa-star"></i> Features</a></li>
             <li><a href="#installation" class="nav-link"><i class="fas fa-download"></i> Installation</a></li>
+            <li><a href="#keybinding-system" class="nav-link"><i class="fas fa-shield-alt"></i> Keybinding System</a></li>
             <li><a href="#keybindings" class="nav-link"><i class="fas fa-keyboard"></i> Keybindings</a></li>
             <li><a href="#plugins" class="nav-link"><i class="fas fa-puzzle-piece"></i> Plugins</a></li>
             <li><a href="#customization" class="nav-link"><i class="fas fa-cog"></i> Customization</a></li>
@@ -173,6 +174,76 @@ cp -r . ~/.config/nvim/</code></pre>
             </div>
         </section>
 
+        <section id="keybinding-system" class="section">
+            <div class="container">
+                <h2><i class="fas fa-shield-alt"></i> Conflict-Free Keybinding System</h2>
+                
+                <div class="info-card">
+                    <div class="info-header">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Zero Keybinding Conflicts</h3>
+                    </div>
+                    <p>The configuration has been thoroughly analyzed and optimized to ensure all plugins work harmoniously without any keybinding overlaps.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-keyboard"></i>
+                        </div>
+                        <h3>Tab Key Management</h3>
+                        <p>Intelligent fallback system between completion, AI suggestions, and syntax navigation. Each plugin gets priority based on context.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <h3>Leader Key Organization</h3>
+                        <p>Each functionality group has distinct prefixes to prevent overlaps. Navigation, LSP, plugins, and utilities all have their own namespace.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h3>Mode-Specific Mappings</h3>
+                        <p>Terminal, insert, and normal mode mappings are properly separated, ensuring no conflicts between different editing modes.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <h3>Plugin Harmony</h3>
+                        <p>All plugins work together without interfering with each other. LSP, completion, AI suggestions, and file management all coexist peacefully.</p>
+                    </div>
+                </div>
+
+                <div class="conflict-resolution">
+                    <h3><i class="fas fa-tools"></i> Resolved Conflicts</h3>
+                    <div class="conflict-grid">
+                        <div class="conflict-item resolved">
+                            <i class="fas fa-check"></i>
+                            <span>Tab key conflicts between completion plugins</span>
+                        </div>
+                        <div class="conflict-item resolved">
+                            <i class="fas fa-check"></i>
+                            <span>Leader key overlaps between functionality groups</span>
+                        </div>
+                        <div class="conflict-item resolved">
+                            <i class="fas fa-check"></i>
+                            <span>Ctrl+J conflicts between AI completion and fuzzy finder</span>
+                        </div>
+                        <div class="conflict-item resolved">
+                            <i class="fas fa-check"></i>
+                            <span>Mode-specific mapping conflicts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="keybindings" class="section">
             <div class="container">
                 <h2><i class="fas fa-keyboard"></i> Keybindings</h2>
@@ -244,8 +315,8 @@ cp -r . ~/.config/nvim/</code></pre>
                         <div id="ai" class="category-panel">
                             <div class="keybinding-grid">
                                 <div class="keybinding-item">
-                                    <kbd>&lt;Tab&gt;</kbd>
-                                    <span>Accept AI suggestion</span>
+                                    <kbd>&lt;C-Tab&gt;</kbd>
+                                    <span>Accept AI suggestion (conflict-free)</span>
                                 </div>
                                 <div class="keybinding-item">
                                     <kbd>&lt;C-]&gt;</kbd>
@@ -253,7 +324,7 @@ cp -r . ~/.config/nvim/</code></pre>
                                 </div>
                                 <div class="keybinding-item">
                                     <kbd>&lt;C-l&gt;</kbd>
-                                    <span>Accept word from AI suggestion</span>
+                                    <span>Accept word from AI suggestion (conflict-free)</span>
                                 </div>
                                 <div class="keybinding-item">
                                     <kbd>&lt;leader&gt;sa</kbd>

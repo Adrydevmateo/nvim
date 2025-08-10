@@ -595,7 +595,92 @@ p {
     font-size: 0.9rem;
 }
 
-/* Responsive Design */
+/* Info cards */
+.info-card {
+    background: linear-gradient(135deg, var(--surface-color) 0%, var(--accent-color) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.info-header i {
+    font-size: 2rem;
+    color: var(--success-color);
+    margin-right: 1rem;
+}
+
+.info-header h3 {
+    margin-bottom: 0;
+    color: var(--text-primary);
+}
+
+.info-card p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+/* Conflict resolution */
+.conflict-resolution {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--surface-color);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.conflict-resolution h3 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.conflict-resolution h3 i {
+    color: var(--primary-color);
+    margin-right: 0.75rem;
+}
+
+.conflict-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.conflict-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.conflict-item.resolved {
+    border-left: 4px solid var(--success-color);
+}
+
+.conflict-item i {
+    color: var(--success-color);
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.conflict-item span {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Responsive adjustments for conflict grid */
 @media (max-width: 768px) {
     .sidebar {
         transform: translateX(-100%);
@@ -639,6 +724,18 @@ p {
     
     h2 {
         font-size: 1.75rem;
+    }
+
+    .conflict-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-card {
+        padding: 1.5rem;
+    }
+    
+    .conflict-resolution {
+        padding: 1.5rem;
     }
 }
 

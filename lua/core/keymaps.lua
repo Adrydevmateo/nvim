@@ -77,7 +77,7 @@ function M.setup()
   -- File manager keymaps
   map("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- Toggle file explorer
   map("n", "<leader>o", ":NvimTreeFocus<CR>", opts) -- Focus file explorer
-  map("n", "<leader>r", ":NvimTreeRefresh<CR>", opts) -- Refresh file explorer
+  map("n", "<leader>rf", ":NvimTreeRefresh<CR>", opts) -- Refresh file explorer (changed from <leader>r to avoid LSP conflict)
   map("n", "<leader>n", ":NvimTreeFindFile<CR>", opts) -- Find current file in tree
 
   -- Treesitter keymaps

@@ -655,7 +655,7 @@ M.plugins = {
     config = function()
       require("supermaven-nvim").setup({
         keymaps = {
-          accept_suggestion = "<Tab>",
+          accept_suggestion = "<C-Tab>", -- Changed from <Tab> to avoid conflict with completion
           clear_suggestion = "<C-]>",
           accept_word = "<C-l>", -- Changed from <C-j> to avoid conflict with Telescope
         },

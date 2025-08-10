@@ -441,16 +441,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Ctrl/Cmd + number keys for navigation
-        if ((e.ctrlKey || e.metaKey) && e.key >= '1' && e.key <= '7') {
+        if ((e.ctrlKey || e.metaKey) && e.key >= '1' && e.key <= '8') {
             e.preventDefault();
             const sectionMap = {
                 '1': 'overview',
                 '2': 'features',
                 '3': 'installation',
-                '4': 'keybindings',
-                '5': 'plugins',
-                '6': 'customization',
-                '7': 'troubleshooting'
+                '4': 'keybinding-system',
+                '5': 'keybindings',
+                '6': 'plugins',
+                '7': 'customization',
+                '8': 'troubleshooting'
             };
             
             const sectionId = sectionMap[e.key];
@@ -492,6 +493,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Log successful load
     console.log('Neovim Configuration Documentation loaded successfully!');
-    console.log('Keyboard shortcuts: Ctrl/Cmd + 1-7 for navigation');
+    console.log('Keyboard shortcuts: Ctrl/Cmd + 1-8 for navigation');
     console.log('Theme: Dark/Light mode toggle available in sidebar');
 });
