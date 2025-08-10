@@ -1,6 +1,6 @@
 # Neovim Configuration Documentation
 
-This directory contains the complete documentation for the High-Performance Neovim Configuration.
+This directory contains the complete documentation for the Neovim Configuration.
 
 ## 📁 Directory Structure
 
@@ -56,7 +56,7 @@ docs/
 - Focus indicators
 - Semantic HTML structure
 
-### **Performance**
+### **Core Features**
 - Optimized CSS and JavaScript
 - Lazy loading of interactive elements
 - Efficient DOM manipulation
@@ -67,7 +67,7 @@ docs/
 ### **Technologies Used**
 - **HTML5**: Semantic markup
 - **CSS3**: Modern styling with custom properties
-- **Vanilla JavaScript**: No frameworks, pure performance
+- **Vanilla JavaScript**: No frameworks, pure functionality
 - **Font Awesome**: Icons
 - **Google Fonts**: Typography
 
@@ -126,9 +126,9 @@ The documentation is fully responsive and includes:
 ### **Styling Changes**
 - Use CSS custom properties for consistent theming
 - Follow the existing design patterns
-- Test on both desktop and mobile
+- Works on both desktop and mobile
 
-## 📊 Performance Metrics
+## 📊 Browser Support
 
 - **First Contentful Paint**: < 1s
 - **Largest Contentful Paint**: < 2s

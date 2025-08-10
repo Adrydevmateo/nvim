@@ -490,7 +490,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // Performance monitoring
+    // Log successful load
     console.log('Neovim Configuration Documentation loaded successfully!');
     console.log('Keyboard shortcuts: Ctrl/Cmd + 1-7 for navigation');
     console.log('Theme: Dark/Light mode toggle available in sidebar');

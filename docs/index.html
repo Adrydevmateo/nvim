@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>High-Performance Neovim Configuration</title>
+    <title>Neovim Configuration</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
     <nav class="sidebar">
         <div class="sidebar-header">
             <h1><i class="fas fa-code"></i> Neovim Config</h1>
-            <p>High-Performance Setup</p>
+            <p>Neovim Setup</p>
         </div>
         <ul class="nav-menu">
             <li><a href="#overview" class="nav-link active"><i class="fas fa-home"></i> Overview</a></li>
@@ -28,13 +28,13 @@
     <main class="content">
         <section id="overview" class="section active">
             <div class="container">
-                <h1><i class="fas fa-rocket"></i> High-Performance Neovim Configuration</h1>
+                <h1><i class="fas fa-rocket"></i> Neovim Configuration</h1>
                 <p class="lead">A lightweight, fast Neovim configuration optimized for text editing with AI-powered completion.</p>
                 
                 <div class="stats-grid">
                     <div class="stat-card">
                         <i class="fas fa-tachometer-alt"></i>
-                        <h3>Performance</h3>
+                        <h3>Core Features</h3>
                         <p>Optimized for speed with minimal overhead</p>
                     </div>
                     <div class="stat-card">
@@ -65,7 +65,7 @@
                         <div class="feature-icon">
                             <i class="fas fa-tachometer-alt"></i>
                         </div>
-                        <h3>Performance Optimizations</h3>
+                        <h3>Core Optimizations</h3>
                         <ul>
                             <li>Disabled unnecessary built-in plugins</li>
                             <li>Optimized updatetime and timeout settings</li>
@@ -523,12 +523,7 @@ cp -r . ~/.config/nvim/</code></pre>
                     <div class="plugin-card">
                         <div class="plugin-header">
                             <h3><i class="fas fa-clock"></i> Startup Time</h3>
-                            <span class="plugin-type">Performance</span>
-                        </div>
-                        <p>Monitor and analyze Neovim startup performance.</p>
-                        <div class="plugin-features">
-                            <span class="feature-tag">Performance Monitoring</span>
-                            <span class="feature-tag">Startup Analysis</span>
+                            
                             <span class="feature-tag">Optimization Tips</span>
                         </div>
                         <div class="plugin-commands">
@@ -564,7 +559,7 @@ vim.opt.colorcolumn = "80"
 vim.opt.spell = true
 vim.opt.spelllang = "en_us"
 
-print("High-performance Neovim configuration loaded!")</code></pre>
+print("Neovim configuration loaded!")</code></pre>
                         </div>
                     </div>
 
@@ -631,17 +626,12 @@ vim.api.nvim_create_autocmd("FileType", {
                         <ul>
                             <li>Check if you have other Neovim configurations in <code>~/.config/nvim/</code></li>
                             <li>Ensure no other init files are being loaded</li>
-                            <li>Use <code>nvim --startuptime startup.log</code> to profile startup time</li>
+    
                         </ul>
                     </div>
 
                     <div class="trouble-card">
-                        <h3><i class="fas fa-tachometer-alt"></i> Performance Issues</h3>
-                        <ul>
-                            <li>Monitor system resources while using Neovim</li>
-                            <li>Check if any external processes are affecting performance</li>
-                            <li>Consider using <code>nvim --clean</code> to test without any configuration</li>
-                        </ul>
+
                     </div>
 
                     <div class="trouble-card">
