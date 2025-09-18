@@ -1,6 +1,8 @@
-# Neovim Configuration
+# Neovim Configuration | 💫 Fast | 🚀 Intelligent | ⚡️ Powerful
 
 A lightning-fast, AI-powered Neovim configuration designed for modern development workflows. Built with performance in mind and featuring intelligent code completion, this configuration transforms Neovim into a powerful, responsive code editor.
+
+Brought to you by [AdryDev](https://github.com/adrydevmateo)
 
 ![Neovim](https://img.shields.io/badge/Neovim-0.9+-green.svg)
 ![Lua](https://img.shields.io/badge/Lua-5.1+-blue.svg)
