@@ -51,10 +51,14 @@ M.plugins = {
           local theme = colors.theme
           return {
             -- Custom overrides
-            Normal = { bg = "none" },
             NormalFloat = { bg = "none" },
             FloatBorder = { bg = "none" },
             FloatTitle = { bg = "none" },
+            -- Normal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+            Normal = { fg = theme.ui.fg_dim },
+            NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+            LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+            MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
             -- Make search highlighting more visible
             Search = { bg = theme.ui.bg_search, fg = theme.ui.fg_reverse },
             IncSearch = { bg = theme.ui.bg_search, fg = theme.ui.fg_reverse },

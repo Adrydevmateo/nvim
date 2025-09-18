@@ -36,7 +36,7 @@ function M.setup()
   vim.opt.wildmode = "list:longest" -- Complete longest common string, then list
   vim.opt.laststatus = 2 -- Always show status line
   vim.opt.signcolumn = "yes" -- Always show sign column
-  vim.opt.background = "dark" -- Dark background
+  -- vim.opt.background = "dark" -- Dark background
 end
 
 return M
