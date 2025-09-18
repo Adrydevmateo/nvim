@@ -457,7 +457,7 @@ M.plugins = {
       })
 
       -- Load extensions
-      telescope.load_extension("fzf")
+      pcall(telescope.load_extension, "fzf")
 
       -- Telescope keymaps
       local map = vim.keymap.set
