@@ -1,20 +1,4 @@
--- TODO
-
 return {
-  {
-    "folke/snacks.nvim",
-    priority = 1000,
-    lazy = false,
-    ---@type snacks.Config
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-      dashboard = { enabled = true, example = "github" },
-      image = { enabled = true },
-      notifier = { enabled = true },
-    },
-    keys = {
       -- main pickers
       { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
       { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
@@ -62,6 +46,4 @@ return {
       -- other
       { "<c-\\>", function() Snacks.terminal.toggle() end, desc = "Toggle Terminal", mode = { "n", "t" } },
       { "<leader>z", function() Snacks.zen() end, desc = "Toggle Zen Mode" },
-    },
-  }
 }
