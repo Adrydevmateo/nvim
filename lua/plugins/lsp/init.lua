@@ -36,10 +36,50 @@ return {
 			})
 
 			-- Automatically set up every server installed via mason
+			-- mason_lspconfig.setup({
+			-- 	handlers = {
+			-- 		function(server_name)
+			-- 			lspconfig[server_name].setup({})
+			-- 		end,
+			-- 	},
+			-- })
 			mason_lspconfig.setup({
 				handlers = {
+					-- The default handler for all servers
 					function(server_name)
 						lspconfig[server_name].setup({})
+					end,
+
+					-- Specific handler for ts_ls (Disable standard JS/TS files, keep Vue)
+					["ts_ls"] = function()
+						lspconfig.ts_ls.setup({
+							filetypes = { "vue" }, -- Strips away js, ts, jsx, tsx
+							init_options = {
+								plugins = {
+									{
+										name = "@vue/typescript-plugin",
+										location = require("mason-registry")
+											.get_package("vue-language-server")
+											:get_install_path() .. "/libexec/@vue/language-server",
+										languages = { "vue" },
+									},
+								},
+							},
+						})
+					end,
+
+					-- Specific handler for Biome (Targets pure web languages)
+					["biome"] = function()
+						lspconfig.biome.setup({
+							filetypes = {
+								"javascript",
+								"javascriptreact",
+								"typescript",
+								"typescriptreact",
+								"json",
+								"jsonc",
+							},
+						})
 					end,
 				},
 			})
