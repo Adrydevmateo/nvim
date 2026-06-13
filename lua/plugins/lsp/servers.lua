@@ -3,4 +3,6 @@ return {
 	"stylua",
   "biome",
 	"ts_ls",
+  "html",
+  "superhtml"
 }
