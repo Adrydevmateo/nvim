@@ -1,6 +1,17 @@
 local servers = require("plugins.lsp.servers")
+local languages = require("plugins.lsp.languages")
 
 return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter").setup({
+        ensure_installed = languages,
+        highlight = { enable = true },
+      })
+    end
+  },
 	{
 		"williamboman/mason.nvim",
 		config = true, -- Runs require("mason").setup()

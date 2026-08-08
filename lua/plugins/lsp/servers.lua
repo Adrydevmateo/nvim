@@ -4,5 +4,6 @@ return {
   "biome",
 	"ts_ls",
   "html",
-  "superhtml"
+  "superhtml",
+  "clangd"
 }
