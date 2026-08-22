@@ -9,10 +9,10 @@ opt.spell = true -- Enable spell checking
 opt.spelllang = { "en_us" } -- Set spell checker language
 
 -- indentation
-opt.expandtab = true -- Use spaces instead of tabs
-opt.shiftwidth = 2 -- Number of spaces for auto-indent
-opt.tabstop = 2 -- Number of spaces that a tab counts for
-opt.softtabstop = 2 -- Number of spaces for tab in insert mode
+opt.expandtab = false -- Insert real tabs instead of spaces
+opt.shiftwidth = 4 -- Size of an indent step
+opt.tabstop = 4 -- Number of spaces that a tab counts for
+opt.softtabstop = 4 -- Number of spaces that a tab counts for in insert mode
 opt.autoindent = true -- Copy indent from current line
 opt.smartindent = true -- Smart auto-indent
 
